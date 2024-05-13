@@ -1,0 +1,45 @@
+{
+	"name": "lsp-sample-client",
+	"description": "VSCode part of a language server",
+	"author": "Microsoft Corporation",
+	"license": "MIT",
+	"version": "0.0.1",
+	"publisher": "vscode",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Microsoft/vscode-extension-samples"
+	},
+	"engines": {
+		"vscode": "^1.75.0"
+	},
+	"dependencies": {
+		"vscode-languageclient": "^9.0.1"
+	},
+	"devDependencies": {
+		"@types/vscode": "^1.75.1",
+		"@vscode/test-electron": "^2.3.9"
+	},
+	"contributes": {
+        "languages": [
+            {
+                "id": "SysY2022E",
+                "extensions": [".sy"],
+                "aliases": ["sysY2022E", "sysY2022E"]
+            }
+        ],
+		"grammars": [
+            {
+                "language": "SysY2022E",
+                "scopeName": "source.sy",
+                "path": "./src/syntaxes/sy.tmLanguage.json"
+            }
+        ],
+		"themes": [{
+			"label": "SysY2022E",
+			"uiTheme": "vs-dark",
+			"path": "./src/themes/SysY2022E-color-theme.json"
+		}]
+    }
+
+	
+}

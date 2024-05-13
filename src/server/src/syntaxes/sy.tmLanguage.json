@@ -1,0 +1,76 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "SysY2022E",
+	"patterns": [
+		{
+            "include": "#keywords"
+        },
+        {
+            "include": "#delimiters"
+        },
+        {
+            "include": "#operators"
+        },
+        {
+            "include": "#integer_literals"
+        },
+        {
+            "include": "#float_literals"
+        },
+        {
+            "include": "#identifiers"
+        },
+        {
+            "include": "#strings"
+        },
+        {
+            "include": "#comments"
+        }
+
+	],
+	"repository": {
+		"keywords": {
+            "match": "\\b(int|float|void|const|return|if|else|while|break|continue|for)\\b",
+            "name": "keyword.sysy2022e"
+        },
+        "delimiters": {
+            "match": "[\\(\\)\\[\\]\\{\\},;?:]",
+            "name": "delimiter.sysy2022e"
+        },
+        "operators": {
+            "match": "[-!+=*/%&&||==!=<><=>=]",
+            "name": "operator.sysy2022e"
+        },
+        "integer_literals": {
+            "match": "\\b[0-9]+\\b",
+            "name": "constant.numeric.integer.sysy2022e"
+        },
+        "float_literals": {
+            "match": "\\b[0-9]*\\.[0-9]+([Ee][+-]?[0-9]+)?\\b",
+            "name": "constant.numeric.float.sysy2022e"
+        },
+        "identifiers": {
+            "match": "\\b[a-zA-Z_][a-zA-Z_0-9]*\\b",
+            "name": "identifier.sysy2022e"
+        },
+        "strings": {
+            "match": "\"(\\\\.|[^\"])*\"",
+            "name": "string.quoted.double.sysy2022e"
+        },
+        "comments": {
+            "patterns": [
+                {
+                    "match": "//.*",
+                    "name": "comment.line.sysy2022e"
+                },
+                {
+                    "begin": "/\\*",
+                    "end": "\\*/",
+                    "name": "comment.block.sysy2022e"
+                }
+            ]
+        }
+
+	},
+	"scopeName": "source.sy"
+}

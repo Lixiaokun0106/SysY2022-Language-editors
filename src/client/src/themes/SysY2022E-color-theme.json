@@ -1,0 +1,59 @@
+{
+    "colors": {},
+    "tokenColors": [
+        {
+            "scope": "keyword.sysy2022e",
+            "settings": {
+                "foreground": "#C586C0"
+            }
+        },
+        {
+            "scope": "delimiter.sysy2022e",
+            "settings": {
+                "foreground": "#DCDCAA"
+            }
+        },
+        {
+            "scope": "operator.sysy2022e",
+            "settings": {
+                "foreground": "#569CD6"
+            }
+        },
+        {
+            "scope": "constant.numeric.integer.sysy2022e",
+            "settings": {
+                "foreground": "#B5CEA8"
+            }
+        },
+        {
+            "scope": "constant.numeric.float.sysy2022e",
+            "settings": {
+                "foreground": "#D4D4D4"
+            }
+        },
+        {
+            "scope": "identifier.sysy2022e",
+            "settings": {
+                "foreground": "#9CDCFE"
+            }
+        },
+        {
+            "scope": "string.quoted.double.sysy2022e",
+            "settings": {
+                "foreground": "#CE9178"
+            }
+        },
+        {
+            "scope": "comment.line.sysy2022e",
+            "settings": {
+                "foreground": "#608B4E"
+            }
+        },
+        {
+            "scope": "comment.block.sysy2022e",
+            "settings": {
+                "foreground": "#608B4E"
+            }
+        }
+    ]
+}
