@@ -1,14 +1,4 @@
-# LSP Example
-
-Heavily documented sample code for https://code.visualstudio.com/api/language-extensions/language-server-extension-guide
-
-## Functionality
-
-This Language Server works for plain text file. It has the following language features:
-- Completions
-- Diagnostics regenerated on each file change or configuration change
-
-It also includes an End-to-End test.
+# 基于LSP和ANTLR4的SysY2022E语言编辑器
 
 ## Structure
 
