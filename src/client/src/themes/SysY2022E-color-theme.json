@@ -1,40 +1,68 @@
 {
-    "colors": {},
+    "name": "SysY2022E Theme",
+    "colors": {
+        "editor.foreground": "#D4D4D4",
+        "editor.background": "#1E1E1E",
+        "editor.selectionBackground": "#264F78",
+        "editor.lineHighlightBackground": "#2D2D2D",
+        "editorCursor.foreground": "#A7A7A7",
+        "editorWhitespace.foreground": "#404040"
+    },
     "tokenColors": [
         {
-            "scope": "keyword.sysy2022e",
+            "scope": "keyword.control.sysy2022e",
             "settings": {
                 "foreground": "#C586C0"
             }
         },
         {
-            "scope": "delimiter.sysy2022e",
-            "settings": {
-                "foreground": "#DCDCAA"
-            }
-        },
-        {
-            "scope": "operator.sysy2022e",
-            "settings": {
-                "foreground": "#569CD6"
-            }
-        },
-        {
-            "scope": "constant.numeric.integer.sysy2022e",
+            "scope": "constant.numeric.sysy2022e",
             "settings": {
                 "foreground": "#B5CEA8"
             }
         },
         {
+            "scope": "storage.type.sysy2022e",
+            "settings": {
+                "foreground": "#569CD6"
+            }
+        },
+        {
+            "scope": "constant.character.sysy2022e",
+            "settings": {
+                "foreground": "#CE9178"
+            }
+        },
+        {
             "scope": "constant.numeric.float.sysy2022e",
+            "settings": {
+                "foreground": "#B5CEA8"
+            }
+        },
+        {
+            "scope": "keyword.operator.sysy2022e",
             "settings": {
                 "foreground": "#D4D4D4"
             }
         },
         {
-            "scope": "identifier.sysy2022e",
+            "scope": "variable.other.sysy2022e",
             "settings": {
                 "foreground": "#9CDCFE"
+            }
+        },
+        {
+            "scope": "comment.line.double-slash.sysy2022e",
+            "settings": {
+                "foreground": "#008000",
+                "fontStyle": "italic"
+            }
+        },
+        {
+            "scope": "comment.block.sysy2022e",
+            "settings": {
+                "foreground": "#008000",
+                "fontStyle": "italic"
             }
         },
         {
@@ -44,15 +72,9 @@
             }
         },
         {
-            "scope": "comment.line.sysy2022e",
+            "scope": "constant.character.escape.sysy2022e",
             "settings": {
-                "foreground": "#608B4E"
-            }
-        },
-        {
-            "scope": "comment.block.sysy2022e",
-            "settings": {
-                "foreground": "#608B4E"
+                "foreground": "#D7BA7D"
             }
         }
     ]
