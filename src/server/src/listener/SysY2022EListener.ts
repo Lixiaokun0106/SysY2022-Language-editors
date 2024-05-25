@@ -61,8 +61,11 @@ import {
     LAnd1Context, 
     LOr1Context, 
     LOr2Context, 
-    ConstExpContext 
+    ConstExpContext,
+	LVal1Context,
+	LVal2Context
 } from "../parser/SysY2022EParser";
+
 
 /**
  * This interface defines a complete listener for a parse tree produced by
@@ -410,15 +413,29 @@ export default class SysY2022EListener extends ParseTreeListener {
 	 */
 	exitCond?: (ctx: CondContext) => void;
 	/**
-	 * Enter a parse tree produced by `SysY2022EParser.lVal`.
+	 * Enter a parse tree produced by the `lVal1`
+	 * labeled alternative in `SysY2022EParser.lVal`.
 	 * @param ctx the parse tree
 	 */
-	enterLVal?: (ctx: LValContext) => void;
+	enterLVal1?: (ctx: LVal1Context) => void;
 	/**
-	 * Exit a parse tree produced by `SysY2022EParser.lVal`.
+	 * Exit a parse tree produced by the `lVal1`
+	 * labeled alternative in `SysY2022EParser.lVal`.
 	 * @param ctx the parse tree
 	 */
-	exitLVal?: (ctx: LValContext) => void;
+	exitLVal1?: (ctx: LVal1Context) => void;
+	/**
+	 * Enter a parse tree produced by the `lVal2`
+	 * labeled alternative in `SysY2022EParser.lVal`.
+	 * @param ctx the parse tree
+	 */
+	enterLVal2?: (ctx: LVal2Context) => void;
+	/**
+	 * Exit a parse tree produced by the `lVal2`
+	 * labeled alternative in `SysY2022EParser.lVal`.
+	 * @param ctx the parse tree
+	 */
+	exitLVal2?: (ctx: LVal2Context) => void;
 	/**
 	 * Enter a parse tree produced by the `primaryExp1`
 	 * labeled alternative in `SysY2022EParser.primaryExp`.

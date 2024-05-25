@@ -61,9 +61,10 @@ import {
     LAnd1Context, 
     LOr1Context, 
     LOr2Context, 
-    ConstExpContext 
+    ConstExpContext,
+	LVal1Context,
+	LVal2Context 
 } from "../parser/SysY2022EParser";
-
 
 /**
  * This interface defines a complete generic visitor for a parse tree produced
@@ -275,11 +276,19 @@ export default class SysY2022EVisitor<Result> extends ParseTreeVisitor<Result> {
 	 */
 	visitCond?: (ctx: CondContext) => Result;
 	/**
-	 * Visit a parse tree produced by `SysY2022EParser.lVal`.
+	 * Visit a parse tree produced by the `lVal1`
+	 * labeled alternative in `SysY2022EParser.lVal`.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	visitLVal?: (ctx: LValContext) => Result;
+	visitLVal1?: (ctx: LVal1Context) => Result;
+	/**
+	 * Visit a parse tree produced by the `lVal2`
+	 * labeled alternative in `SysY2022EParser.lVal`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitLVal2?: (ctx: LVal2Context) => Result;
 	/**
 	 * Visit a parse tree produced by the `primaryExp1`
 	 * labeled alternative in `SysY2022EParser.primaryExp`.

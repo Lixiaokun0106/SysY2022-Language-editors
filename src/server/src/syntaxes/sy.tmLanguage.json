@@ -1,4 +1,5 @@
 {
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
 	"name": "SysY2022E",
 	"patterns": [
 		{
@@ -26,7 +27,6 @@
             "include": "#comments"
         }
 
-
 	],
 	"repository": {
 		"keywords": {
@@ -38,7 +38,7 @@
             "name": "delimiter.sysy2022e"
         },
         "operators": {
-            "match": "[-!+=*/%&&||==!=<><=>=^]",
+            "match": "[-!+=*/%&&||==!=<><=>=]",
             "name": "operator.sysy2022e"
         },
         "integer_literals": {
@@ -70,7 +70,6 @@
                 }
             ]
         }
-
 
 	},
 	"scopeName": "source.sy"

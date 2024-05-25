@@ -1,5 +1,5 @@
 import  SysY2022EListener  from '../listener/SysY2022EListener';
-import { SysY2022EParser,ConstDefContext,UninitVarDefContext,InitVarDefContext,FuncDefContext } from '../parser/SysY2022EParser';
+import { SysY2022EParser,ConstDefContext,UninitVarDefContext,InitVarDefContext,FuncDefContext, StructDeclContext } from '../parser/SysY2022EParser';
 import { Symbol, SymbolType } from './Symbol';
 
 export class SymbolTableGenerator extends SysY2022EListener {
@@ -28,4 +28,6 @@ export class SymbolTableGenerator extends SysY2022EListener {
         const symbol = new Symbol(name, SymbolType.FUNCTION);
         this.symbolTable.push(symbol);
     }
+
+
 }
