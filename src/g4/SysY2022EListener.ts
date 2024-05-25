@@ -2,67 +2,67 @@
 
 import {ParseTreeListener} from "antlr4";
 
-import { 
-    CompUnitContext, 
-    DeclContext, 
-    ConstDeclContext, 
-    BTypeContext, 
-    ConstDefContext, 
-    ScalarConstInitValContext, 
-    ListConstInitValContext, 
-    StructDeclContext, 
-    LambdaTypeContext, 
-    VarDeclContext, 
-    UninitVarDefContext, 
-    InitVarDefContext, 
-    ScalarInitValContext, 
-    ListInitvalContext, 
-    FuncDefContext, 
-    FuncTypeContext, 
-    FuncFParamsContext, 
-    FuncFParamContext, 
-    BlockContext, 
-    BlockItemContext, 
-    AssignmentContext, 
-    ExpStmtContext, 
-    BlockStmtContext, 
-    IfStmt1Context, 
-    IfStmt2Context, 
-    WhileStmtContext, 
-    BreakStmtContext, 
-    ContinueStmtContext, 
-    ReturnStmtContext, 
-    ExpContext, 
-    CondContext, 
-    LValContext, 
-    PrimaryExp1Context, 
-    PrimaryExp2Context, 
-    PrimaryExp3Context, 
-    PrimaryExp4Context, 
-    LambdaExpContext, 
-    NumberContext, 
-    Unary1Context, 
-    Unary2Context, 
-    Unary3Context, 
-    Unary4Context, 
-    UnaryOpContext, 
-    FuncRParamsContext, 
-    ExpAsRParamContext, 
-    StringAsRParamContext, 
-    Mul2Context, 
-    Mul1Context, 
-    Add2Context, 
-    Add1Context, 
-    Rel2Context, 
-    Rel1Context, 
-    Eq1Context, 
-    Eq2Context, 
-    LAnd2Context, 
-    LAnd1Context, 
-    LOr1Context, 
-    LOr2Context, 
-    ConstExpContext 
-} from "../parser/SysY2022EParser";
+
+import { CompUnitContext } from "./SysY2022EParser";
+import { DeclContext } from "./SysY2022EParser";
+import { ConstDeclContext } from "./SysY2022EParser";
+import { BTypeContext } from "./SysY2022EParser";
+import { ConstDefContext } from "./SysY2022EParser";
+import { ScalarConstInitValContext } from "./SysY2022EParser";
+import { ListConstInitValContext } from "./SysY2022EParser";
+import { StructDeclContext } from "./SysY2022EParser";
+import { LambdaTypeContext } from "./SysY2022EParser";
+import { VarDeclContext } from "./SysY2022EParser";
+import { UninitVarDefContext } from "./SysY2022EParser";
+import { InitVarDefContext } from "./SysY2022EParser";
+import { ScalarInitValContext } from "./SysY2022EParser";
+import { ListInitvalContext } from "./SysY2022EParser";
+import { FuncDefContext } from "./SysY2022EParser";
+import { FuncTypeContext } from "./SysY2022EParser";
+import { FuncFParamsContext } from "./SysY2022EParser";
+import { FuncFParamContext } from "./SysY2022EParser";
+import { BlockContext } from "./SysY2022EParser";
+import { BlockItemContext } from "./SysY2022EParser";
+import { AssignmentContext } from "./SysY2022EParser";
+import { ExpStmtContext } from "./SysY2022EParser";
+import { BlockStmtContext } from "./SysY2022EParser";
+import { IfStmt1Context } from "./SysY2022EParser";
+import { IfStmt2Context } from "./SysY2022EParser";
+import { WhileStmtContext } from "./SysY2022EParser";
+import { BreakStmtContext } from "./SysY2022EParser";
+import { ContinueStmtContext } from "./SysY2022EParser";
+import { ReturnStmtContext } from "./SysY2022EParser";
+import { ExpContext } from "./SysY2022EParser";
+import { CondContext } from "./SysY2022EParser";
+import { LValContext } from "./SysY2022EParser";
+import { PrimaryExp1Context } from "./SysY2022EParser";
+import { PrimaryExp2Context } from "./SysY2022EParser";
+import { PrimaryExp3Context } from "./SysY2022EParser";
+import { PrimaryExp4Context } from "./SysY2022EParser";
+import { LambdaExpContext } from "./SysY2022EParser";
+import { NumberContext } from "./SysY2022EParser";
+import { Unary1Context } from "./SysY2022EParser";
+import { Unary2Context } from "./SysY2022EParser";
+import { Unary3Context } from "./SysY2022EParser";
+import { Unary4Context } from "./SysY2022EParser";
+import { UnaryOpContext } from "./SysY2022EParser";
+import { FuncRParamsContext } from "./SysY2022EParser";
+import { ExpAsRParamContext } from "./SysY2022EParser";
+import { StringAsRParamContext } from "./SysY2022EParser";
+import { Mul2Context } from "./SysY2022EParser";
+import { Mul1Context } from "./SysY2022EParser";
+import { Add2Context } from "./SysY2022EParser";
+import { Add1Context } from "./SysY2022EParser";
+import { Rel2Context } from "./SysY2022EParser";
+import { Rel1Context } from "./SysY2022EParser";
+import { Eq1Context } from "./SysY2022EParser";
+import { Eq2Context } from "./SysY2022EParser";
+import { LAnd2Context } from "./SysY2022EParser";
+import { LAnd1Context } from "./SysY2022EParser";
+import { LOr1Context } from "./SysY2022EParser";
+import { LOr2Context } from "./SysY2022EParser";
+import { ConstExpContext } from "./SysY2022EParser";
+
 
 /**
  * This interface defines a complete listener for a parse tree produced by

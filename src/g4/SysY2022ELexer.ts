@@ -11,7 +11,7 @@ import {
 	PredictionContextCache,
 	Token
 } from "antlr4";
-export class SysY2022ELexer extends Lexer {
+export default class SysY2022ELexer extends Lexer {
 	public static readonly T__0 = 1;
 	public static readonly T__1 = 2;
 	public static readonly T__2 = 3;

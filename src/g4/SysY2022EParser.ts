@@ -11,14 +11,14 @@ import {
 	Token, TokenStream,
 	Interval, IntervalSet
 } from 'antlr4';
-import SysY2022EListener from "../listener/SysY2022EListener";
-import SysY2022EVisitor from "../visitor/SysY2022EVisitor";
+import SysY2022EListener from "./SysY2022EListener.js";
+import SysY2022EVisitor from "./SysY2022EVisitor.js";
 
 // for running tests with parameters, TODO: discuss strategy for typed parameters in CI
 // eslint-disable-next-line no-unused-vars
 type int = number;
 
-export class SysY2022EParser extends Parser {
+export default class SysY2022EParser extends Parser {
 	public static readonly T__0 = 1;
 	public static readonly T__1 = 2;
 	public static readonly T__2 = 3;
