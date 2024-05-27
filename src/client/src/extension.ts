@@ -10,7 +10,8 @@ import {
 	LanguageClient,
 	LanguageClientOptions,
 	ServerOptions,
-	TransportKind
+	TransportKind,
+	CodeActionRequest
 } from 'vscode-languageclient/node';
 
 let client: LanguageClient;
@@ -42,8 +43,8 @@ export function activate(context: ExtensionContext) {
 	};
 	// 创建语言客户端并启动客户端
 	client = new LanguageClient(
-		'languageServerExample',
-		'Language Server Example',
+		'SysY2022ElanguageSupport',
+		'SysY2022E Language Support',
 		serverOptions,
 		clientOptions
 	);
@@ -53,6 +54,8 @@ export function activate(context: ExtensionContext) {
 	client.start();
 
 	console.log('Congratulations, your extension "client" is now active!');
+
+	
 
 }
 

@@ -160,8 +160,8 @@ export class SyntaxChecker extends SysY2022EVisitor<void> {
             {
                 const structName = bType.STRUCTNAME().getText()+ '_struct1';
                 const structNameShow = bType.STRUCTNAME().getText();
-                console.log(structName);
-                console.log(structNameShow);
+                //console.log(structName);
+                //console.log(structNameShow);
                 // 检查是否定义
                 let i = this.scopStack.length - 1;
                 while (i >= 0 && !(this.scopStack[i].has(structName) && this.scopStack[i].get(structName)[0] === 'decl')) {
@@ -181,10 +181,10 @@ export class SyntaxChecker extends SysY2022EVisitor<void> {
                     {
                         //@ts-ignore
                         const varName = ctx.varDef(0).getChild(0).getText()+ '_struct2';
-                        console.log(varName);
+                        //console.log(varName);
                         //@ts-ignore
                         const varNameShow = ctx.varDef(0).children[0].getText();
-                        console.log(varNameShow);
+                        //console.log(varNameShow);
                         // 检查是否重复定义
                         if (this.scopStack[this.scopStack.length - 1].has(varName) && this.scopStack[this.scopStack.length - 1].get(varName)[0] === 'decl'){
                             this.errors.push({
@@ -428,8 +428,8 @@ export class SyntaxChecker extends SysY2022EVisitor<void> {
         // 检查是否已经被定义，利用scopStack进行检查
         const lValName = ctx.ID().getText()+ '_decl';
         const lValNameShow = ctx.ID().getText();
-        console.log(lValName);
-        console.log(lValNameShow);
+        //console.log(lValName);
+        //console.log(lValNameShow);
         let i = this.scopStack.length - 1;
         while (i >= 0 && !(this.scopStack[i].has(lValName) && this.scopStack[i].get(lValName)[0] === 'decl')) {
             i--;
@@ -460,8 +460,8 @@ export class SyntaxChecker extends SysY2022EVisitor<void> {
         // 这里应该是结构体的成员访问,需要检查结构体和成员是否定义
         const structName = ctx.ID(0).getText()+ '_struct2';
         const structNameShow = ctx.ID(0).getText();
-        console.log(structName);
-        console.log(structNameShow);
+        //console.log(structName);
+        //console.log(structNameShow);
         // 检查结构体变量是否定义
         let i = this.scopStack.length - 1;
         while (i >= 0 && !(this.scopStack[i].has(structName) && this.scopStack[i].get(structName)[0] === 'decl')) {
@@ -480,8 +480,8 @@ export class SyntaxChecker extends SysY2022EVisitor<void> {
         // 检查结构体成员是否定义
         const structMemberName = ctx.ID(1).getText()+ '_decl';
         const structMemberNameShow = ctx.ID(1).getText();
-        console.log(structMemberName);
-        console.log(structMemberNameShow);
+        //console.log(structMemberName);
+        //console.log(structMemberNameShow);
         let j = this.scopStack.length - 1;
         while (j >= 0 && !(this.scopStack[j].has(structMemberName) && this.scopStack[j].get(structMemberName)[0] === 'decl')) {
             j--;
