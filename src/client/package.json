@@ -1,13 +1,13 @@
 {
-	"name": "lsp-sample-client",
+	"name": "lsp-client",
 	"description": "VSCode part of a language server",
-	"author": "Microsoft Corporation",
+	"author": "Four Pigs",
 	"license": "MIT",
 	"version": "0.0.1",
-	"publisher": "vscode",
+	"publisher": "Four Pigs",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/Microsoft/vscode-extension-samples"
+		"url": "https://github.com/Lixiaokun0106/SysY2022-Language-editors"
 	},
 	"engines": {
 		"vscode": "^1.75.0"
@@ -19,6 +19,10 @@
 		"@types/vscode": "^1.75.1",
 		"@vscode/test-electron": "^2.3.9"
 	},
+	"activationEvents": [
+		"onLanguage:SysY2022E"
+	],
+	"main": "./out/extension",
 	"contributes": {
         "languages": [
             {
@@ -38,7 +42,13 @@
 			"label": "SysY2022E",
 			"uiTheme": "vs-dark",
 			"path": "./src/themes/SysY2022E-color-theme.json"
-		}]
+		}],
+		"commands":[
+			{
+			"command": "extension.runAnalysis",
+			"title": "Run Analysis"
+			}
+		]
     }
 
 	

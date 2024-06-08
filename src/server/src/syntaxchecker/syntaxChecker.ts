@@ -14,7 +14,9 @@ import { CompUnitContext, DeclContext, ConstDeclContext, BTypeContext,
     Unary3Context,Add1Context,Add2Context,Rel1Context,Rel2Context,PrimaryExp3Context,
     PrimaryExp2Context,PrimaryExp1Context,ReturnStmtContext,ContinueStmtContext,BreakStmtContext,
     WhileStmtContext,IfStmt2Context,ExpStmtContext,AssignmentContext,
-    ScalarConstInitValContext} from '../parser/SysY2022EParser';
+    ScalarConstInitValContext,StructDeclContext,LambdaTypeContext,
+    PrimaryExp4Context,LambdaExpContext,
+    Unary4Context,LVal1Context,LVal2Context} from '../parser/SysY2022EParser';
 
 export class SyntaxChecker extends SysY2022EVisitor<void> {  
     // 语法检查错误信息
@@ -124,9 +126,86 @@ export class SyntaxChecker extends SysY2022EVisitor<void> {
         this.visitChildren(ctx);
     }
 
+    // 访问structDecl节点
+    visitStructDecl = (ctx: StructDeclContext): void => {
+        const structName = ctx.STRUCTNAME().getText()+ '_struct1';
+        const structNameShow = ctx.STRUCTNAME().getText();
+        // 检查是否重复定义
+        if (this.scopStack[this.scopStack.length - 1].has(structName) && this.scopStack[this.scopStack.length - 1].get(structName)[0] === 'decl'){
+            this.errors.push({
+                message: `Struct ${structNameShow} is already defined.`,
+                start: ctx.start ? ctx.start.start : 0,
+                stop: ctx.stop ? ctx.stop.stop : 0,
+                context: 'visitStructDecl',
+                suggestion: `Rename the struct ${structNameShow} or remove the duplicate definition.`
+            });
+        } 
+        else {
+            this.scopStack[this.scopStack.length - 1].set(structName, ['decl',true,'struct','scalar','var']);
+        }
+        this.visitChildren(ctx);
+    }
+
+    // 访问lambdaType节点
+    visitLambdaType = (ctx: LambdaTypeContext): void => {
+        this.visitChildren(ctx);
+    }
+
     // 访问varDecl节点
     visitVarDecl = (ctx: VarDeclContext): void => {
-        this.visitChildren(ctx);
+        // 提前对结构体类型的变量进行处理
+        // 判断bType是否是ID类型，如果是的话，需要检查是否定义，然后是对结构体变量进行的声明
+        const bType = ctx.bType();
+        if(bType.STRUCTNAME() != null)
+            {
+                const structName = bType.STRUCTNAME().getText()+ '_struct1';
+                const structNameShow = bType.STRUCTNAME().getText();
+                //console.log(structName);
+                //console.log(structNameShow);
+                // 检查是否定义
+                let i = this.scopStack.length - 1;
+                while (i >= 0 && !(this.scopStack[i].has(structName) && this.scopStack[i].get(structName)[0] === 'decl')) {
+                    i--;
+                }
+                if (i === -1) {
+                    this.errors.push({
+                        message: `Struct ${structNameShow} is not defined.`,
+                        start: ctx.start ? ctx.start.start : 0,
+                        stop: ctx.stop ? ctx.stop.stop : 0,
+                        context: 'visitVarDecl',
+                        suggestion: `Define the struct ${structNameShow}.`
+                    });
+                }
+                // 对结构体变量进行的声明
+                else
+                    {
+                        //@ts-ignore
+                        const varName = ctx.varDef(0).getChild(0).getText()+ '_struct2';
+                        //console.log(varName);
+                        //@ts-ignore
+                        const varNameShow = ctx.varDef(0).children[0].getText();
+                        //console.log(varNameShow);
+                        // 检查是否重复定义
+                        if (this.scopStack[this.scopStack.length - 1].has(varName) && this.scopStack[this.scopStack.length - 1].get(varName)[0] === 'decl'){
+                            this.errors.push({
+                                message: `Variable ${varNameShow} is already defined.`,
+                                start: ctx.start ? ctx.start.start : 0,
+                                stop: ctx.stop ? ctx.stop.stop : 0,
+                                context: 'visitVarDecl',
+                                suggestion: `Rename the variable ${varNameShow} or remove the duplicate definition.`
+                            });
+                        } 
+                        else {
+                            this.scopStack[this.scopStack.length - 1].set(varName, ['decl',true,'struct','scalar','var']);
+                        }
+                    }
+            }
+
+        else
+        {
+            this.visitChildren(ctx);
+        }
+        //this.visitChildren(ctx);
     }
 
     // 访问varDef节点
@@ -153,9 +232,12 @@ export class SyntaxChecker extends SysY2022EVisitor<void> {
                 {
                     bTypeExtend = 'scalar';
                 }
+
             //@ts-ignore
-            const bType = ctx.parentCtx.bType().getText();
+            //const bType = ctx.parentCtx.bType().getText();
+            const bType = "int"
             this.scopStack[this.scopStack.length - 1].set(varName, ['decl',true,bType,bTypeExtend,'var']);
+                
         }
         this.visitChildren(ctx);
     }
@@ -304,7 +386,7 @@ export class SyntaxChecker extends SysY2022EVisitor<void> {
         this.visitChildren(ctx);
     }
     visitReturnStmt = (ctx: ReturnStmtContext): void =>{// return语句
-    /*    // 检查return是否在函数中
+    /*  
 
         // 检查return 对应的内容是否已经定义，借助scopStack进行检查
         const returnName = ctx.exp().getText()+ '_decl';
@@ -342,10 +424,12 @@ export class SyntaxChecker extends SysY2022EVisitor<void> {
     }
 
     // 访问lVal节点
-    visitLVal = (ctx: LValContext): void => {
+    visitLVal1 = (ctx: LVal1Context): void => {
         // 检查是否已经被定义，利用scopStack进行检查
         const lValName = ctx.ID().getText()+ '_decl';
         const lValNameShow = ctx.ID().getText();
+        //console.log(lValName);
+        //console.log(lValNameShow);
         let i = this.scopStack.length - 1;
         while (i >= 0 && !(this.scopStack[i].has(lValName) && this.scopStack[i].get(lValName)[0] === 'decl')) {
             i--;
@@ -372,6 +456,49 @@ export class SyntaxChecker extends SysY2022EVisitor<void> {
             }
         this.visitChildren(ctx);
     }
+    visitLVal2 = (ctx: LVal2Context): void => {
+        // 这里应该是结构体的成员访问,需要检查结构体和成员是否定义
+        const structName = ctx.ID(0).getText()+ '_struct2';
+        const structNameShow = ctx.ID(0).getText();
+        //console.log(structName);
+        //console.log(structNameShow);
+        // 检查结构体变量是否定义
+        let i = this.scopStack.length - 1;
+        while (i >= 0 && !(this.scopStack[i].has(structName) && this.scopStack[i].get(structName)[0] === 'decl')) {
+            i--;
+        }
+        if (i === -1) {
+            this.errors.push({
+                // 结构体变量未定义
+                message: `Struct variable ${structNameShow} is not defined.`,
+                start: ctx.start ? ctx.start.start : 0,
+                stop: ctx.stop ? ctx.stop.stop : 0,
+                context: 'visitLVal',
+                suggestion: `Define the struct variable ${structNameShow}.`
+            });
+        }
+        // 检查结构体成员是否定义
+        const structMemberName = ctx.ID(1).getText()+ '_decl';
+        const structMemberNameShow = ctx.ID(1).getText();
+        //console.log(structMemberName);
+        //console.log(structMemberNameShow);
+        let j = this.scopStack.length - 1;
+        while (j >= 0 && !(this.scopStack[j].has(structMemberName) && this.scopStack[j].get(structMemberName)[0] === 'decl')) {
+            j--;
+        }
+        if (j === -1) {
+            this.errors.push({
+                // 结构体成员未定义
+                message: `Struct member ${structMemberNameShow} is not defined.`,
+                start: ctx.start ? ctx.start.start : 0,
+                stop: ctx.stop ? ctx.stop.stop : 0,
+                context: 'visitLVal',
+                suggestion: `Define the struct member ${structMemberNameShow}.`
+            });
+        }
+
+        this.visitChildren(ctx);
+    }
 
     // 访问primaryExp节点
     visitPrimaryExp1 = (ctx: PrimaryExp1Context): void => {// 基础表达式1
@@ -383,6 +510,17 @@ export class SyntaxChecker extends SysY2022EVisitor<void> {
     visitPrimaryExp3 = (ctx: PrimaryExp3Context): void => {// 基础表达式3
         this.visitChildren(ctx);
     }
+    visitPrimaryExp4 = (ctx: PrimaryExp4Context):void =>{// 基础表达式4 lambda表达式
+        this.createScope();
+        this.visitChildren(ctx);
+        this.destroyScope();
+    }
+
+    // 访问lambdaExp节点
+    visitLambdaExp = (ctx: LambdaExpContext): void => {
+        this.visitChildren(ctx);
+    }
+
 
     // 访问number节点
     visitNumber = (ctx: NumberContext): void => {
@@ -546,6 +684,30 @@ export class SyntaxChecker extends SysY2022EVisitor<void> {
     visitUnary3 = (ctx: Unary3Context): void =>{// 一元表达式3
         this.visitChildren(ctx);
     }
+    visitUnary4 = (ctx: Unary4Context):void =>{// 一元表达式4,结构体的成员访问
+    /*    const structName = ctx.ID().getText()+ '_decl';
+        const structNameShow = ctx.ID().getText();
+        console.log(structName);
+        console.log(structNameShow);
+        // 检查成员是否已经定义
+        let i = this.scopStack.length - 1;
+        while (i >= 0 && !(this.scopStack[i].has(structName) && this.scopStack[i].get(structName)[0] === 'decl')) {
+            i--;
+        }
+        if (i === -1) {
+            this.errors.push({
+                // 成员未定义
+                message: `Struct member ${structNameShow} is not defined.`,
+                start: ctx.start ? ctx.start.start : 0,
+                stop: ctx.stop ? ctx.stop.stop : 0,
+                context: 'visitUnary4',
+                suggestion: `Define the struct member ${structNameShow}.`
+            });
+        }*/
+        
+        this.visitChildren(ctx);
+    }
+
 
     // 访问unaryOp节点
     visitUnaryOp = (ctx: UnaryOpContext): void => {
