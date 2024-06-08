@@ -19,6 +19,10 @@
 		"@types/vscode": "^1.75.1",
 		"@vscode/test-electron": "^2.3.9"
 	},
+	"activationEvents": [
+		"onLanguage:SysY2022E"
+	],
+	"main": "./out/extension",
 	"contributes": {
         "languages": [
             {
@@ -38,7 +42,13 @@
 			"label": "SysY2022E",
 			"uiTheme": "vs-dark",
 			"path": "./src/themes/SysY2022E-color-theme.json"
-		}]
+		}],
+		"commands":[
+			{
+			"command": "extension.runAnalysis",
+			"title": "Run Analysis"
+			}
+		]
     }
 
 	

@@ -5,7 +5,10 @@
 
 import * as path from 'path';
 import { workspace, ExtensionContext } from 'vscode';
-
+import * as vscode from 'vscode';
+import { runAnalysis } from './runAnalysis';
+import { GoRenameProvider } from './Rename';
+import { MyRefactorProvider } from './Codeaction';
 import {
 	LanguageClient,
 	LanguageClientOptions,
@@ -15,6 +18,7 @@ import {
 } from 'vscode-languageclient/node';
 
 let client: LanguageClient;
+const GO_MODE: vscode.DocumentFilter = { language: 'SysY2022E', scheme: 'file' };
 
 export function activate(context: ExtensionContext) {
 	// 服务器是用node实现的
@@ -34,7 +38,6 @@ export function activate(context: ExtensionContext) {
 
 	// 控制语言客户端的选项
 	const clientOptions: LanguageClientOptions = {
-		// 仅对纯文本文档注册服务器
 		documentSelector: [{ scheme: 'file', language: 'SysY2022E' }],
 		synchronize: {
 			// 通知服务器关于工作区中包含的'.sy'文件的更改
@@ -55,7 +58,28 @@ export function activate(context: ExtensionContext) {
 
 	console.log('Congratulations, your extension "client" is now active!');
 
+    // 注册analysis命令
+	let analysis = vscode.commands.registerCommand('extension.runAnalysis', () => {
+		runAnalysis();
+	});
+	context.subscriptions.push(analysis);
+
+
+	//  重命名
+	context.subscriptions.push(
+		vscode.languages.registerRenameProvider(
+			GO_MODE,new GoRenameProvider()
+		)
+	);
 	
+	// 代码重构
+	context.subscriptions.push(
+		vscode.languages.registerCodeActionsProvider(
+			GO_MODE, new MyRefactorProvider()
+		)
+	);
+
+
 
 }
 

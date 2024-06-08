@@ -37,7 +37,7 @@ import { SyntaxChecker } from './syntaxchecker/syntaxChecker';
 import {
 	TextDocument
 } from 'vscode-languageserver-textdocument';
-import { connect } from 'http2';
+
 
 // 为服务器创建一个连接，使用Node的IPC作为传输。
 // 还包括所有预览/建议的LSP功能。
@@ -74,6 +74,9 @@ connection.onInitialize((params: InitializeParams) => {
 			hoverProvider: true,
 			// 告诉客户端服务器支持代码操作。
 			codeActionProvider: true,
+			executeCommandProvider: {
+				commands: ['SysY2022E.fix']
+			},
 			// 告诉客户端服务器支持显示符号定义
 			definitionProvider: true,
 			// 告诉客户端服务器支持函数或方法签名帮助
@@ -83,7 +86,10 @@ connection.onInitialize((params: InitializeParams) => {
 			// 告诉客户端服务器支持显示对符号的所有引用
 			referencesProvider: true,
 			// 重命名功能
-			renameProvider: true,
+			//renameProvider: true,
+
+
+			
 			
 
 			// 告诉客户端这个服务器支持代码的增量同步。
@@ -428,7 +434,7 @@ connection.onCodeAction((params: CodeActionParams) => {
     for (const diagnostic of diagnostics) {
         const codeAction = CodeAction.create(
             'Fix this issue', // 标题
-            Command.create('Fix', 'my-lsp.fix', diagnostic), // 命令
+            Command.create('Fix', 'SysY2022E.fix', diagnostic), // 命令
             CodeActionKind.QuickFix // 类型
         );
         codeAction.diagnostics = [diagnostic];
@@ -438,11 +444,14 @@ connection.onCodeAction((params: CodeActionParams) => {
     return codeActions;
 });
 connection.onExecuteCommand((params: ExecuteCommandParams) => {
-    if (params.command === 'my-lsp.fix') {
+    if (params.command === 'SysY2022E.fix') {
 		// 获取诊断信息
-        //const diagnostic: Diagnostic = params.arguments[0];
+		//@ts-ignore
+		const diagnostic = params.arguments[0] as Diagnostic;
+		
+
         // 根据 diagnostic 来修复问题
-		//console.log(diagnostic); 
+		console.log(diagnostic);
     }
 });
 
@@ -754,6 +763,7 @@ connection.onReferences(
 );
 
 // 重命名
+/*
 connection.onRenameRequest(
 	(params: RenameParams): WorkspaceEdit => {
 		const document = documents.get(params.textDocument.uri);
@@ -783,7 +793,7 @@ connection.onRenameRequest(
 			if (match.index <= positionOffset && wordMatch.lastIndex <= positionOffset ) {
 				word = match[0];
 				
-			}
+			} 
 		}
 
 		// 遍历引用表,记录所有引用,准备重命名
@@ -811,7 +821,7 @@ connection.onRenameRequest(
 		return { changes };
 	}
 );
-
+*/
 
 
 
