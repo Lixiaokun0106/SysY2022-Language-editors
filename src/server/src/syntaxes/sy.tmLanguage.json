@@ -30,7 +30,7 @@
 	],
 	"repository": {
 		"keywords": {
-            "match": "\\b(int|float|void|const|return|if|else|while|break|continue|for)\\b",
+            "match": "\\b(int|float|void|const|return|if|else|while|break|continue|for|struct)\\b",
             "name": "keyword.sysy2022e"
         },
         "delimiters": {
