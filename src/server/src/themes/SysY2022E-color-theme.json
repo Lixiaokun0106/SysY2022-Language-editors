@@ -38,6 +38,12 @@
             }
         },
         {
+            "scope": "structname.sysy2022e",
+            "settings": {
+                "foreground": "#25dfb6"
+            }
+        },
+        {
             "scope": "string.quoted.double.sysy2022e",
             "settings": {
                 "foreground": "#CE9178"
@@ -55,5 +61,6 @@
                 "foreground": "#608B4E"
             }
         }
+
     ]
 }
