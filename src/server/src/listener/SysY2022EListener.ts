@@ -3,18 +3,67 @@
 import {ParseTreeListener} from "antlr4";
 
 import { 
-    CompUnitContext, DeclContext, ConstDeclContext, BTypeContext, ConstDefContext, 
-    ScalarConstInitValContext, ListConstInitValContext, VarDeclContext, UninitVarDefContext, 
-    InitVarDefContext, ScalarInitValContext, ListInitvalContext, FuncDefContext, FuncTypeContext, 
-    FuncFParamsContext, FuncFParamContext, BlockContext, BlockItemContext, AssignmentContext, 
-    ExpStmtContext, BlockStmtContext, IfStmt1Context, IfStmt2Context, WhileStmtContext, 
-    BreakStmtContext, ContinueStmtContext, ReturnStmtContext, ExpContext, CondContext, 
-    LValContext, PrimaryExp1Context, PrimaryExp2Context, PrimaryExp3Context, NumberContext, 
-    Unary1Context, Unary2Context, Unary3Context, UnaryOpContext, FuncRParamsContext, 
-    ExpAsRParamContext, StringAsRParamContext, Mul2Context, Mul1Context, Add2Context, 
-    Add1Context, Rel2Context, Rel1Context, Eq1Context, Eq2Context, LAnd2Context, 
-    LAnd1Context, LOr1Context, LOr2Context, ConstExpContext 
+    CompUnitContext, 
+    DeclContext, 
+    ConstDeclContext, 
+    BTypeContext, 
+    ConstDefContext, 
+    ScalarConstInitValContext, 
+    ListConstInitValContext, 
+    StructDeclContext, 
+    LambdaTypeContext, 
+    VarDeclContext, 
+    UninitVarDefContext, 
+    InitVarDefContext, 
+    ScalarInitValContext, 
+    ListInitvalContext, 
+    FuncDefContext, 
+    FuncTypeContext, 
+    FuncFParamsContext, 
+    FuncFParamContext, 
+    BlockContext, 
+    BlockItemContext, 
+    AssignmentContext, 
+    ExpStmtContext, 
+    BlockStmtContext, 
+    IfStmt1Context, 
+    IfStmt2Context, 
+    WhileStmtContext, 
+    BreakStmtContext, 
+    ContinueStmtContext, 
+    ReturnStmtContext, 
+    ExpContext, 
+    CondContext, 
+    LValContext, 
+    PrimaryExp1Context, 
+    PrimaryExp2Context, 
+    PrimaryExp3Context, 
+    PrimaryExp4Context, 
+    LambdaExpContext, 
+    NumberContext, 
+    Unary1Context, 
+    Unary2Context, 
+    Unary3Context, 
+    Unary4Context, 
+    UnaryOpContext, 
+    FuncRParamsContext, 
+    ExpAsRParamContext, 
+    StringAsRParamContext, 
+    Mul2Context, 
+    Mul1Context, 
+    Add2Context, 
+    Add1Context, 
+    Rel2Context, 
+    Rel1Context, 
+    Eq1Context, 
+    Eq2Context, 
+    LAnd2Context, 
+    LAnd1Context, 
+    LOr1Context, 
+    LOr2Context, 
+    ConstExpContext 
 } from "../parser/SysY2022EParser";
+
 /**
  * This interface defines a complete listener for a parse tree produced by
  * `SysY2022EParser`.
@@ -94,6 +143,26 @@ export default class SysY2022EListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	exitListConstInitVal?: (ctx: ListConstInitValContext) => void;
+	/**
+	 * Enter a parse tree produced by `SysY2022EParser.structDecl`.
+	 * @param ctx the parse tree
+	 */
+	enterStructDecl?: (ctx: StructDeclContext) => void;
+	/**
+	 * Exit a parse tree produced by `SysY2022EParser.structDecl`.
+	 * @param ctx the parse tree
+	 */
+	exitStructDecl?: (ctx: StructDeclContext) => void;
+	/**
+	 * Enter a parse tree produced by `SysY2022EParser.lambdaType`.
+	 * @param ctx the parse tree
+	 */
+	enterLambdaType?: (ctx: LambdaTypeContext) => void;
+	/**
+	 * Exit a parse tree produced by `SysY2022EParser.lambdaType`.
+	 * @param ctx the parse tree
+	 */
+	exitLambdaType?: (ctx: LambdaTypeContext) => void;
 	/**
 	 * Enter a parse tree produced by `SysY2022EParser.varDecl`.
 	 * @param ctx the parse tree
@@ -387,6 +456,28 @@ export default class SysY2022EListener extends ParseTreeListener {
 	 */
 	exitPrimaryExp3?: (ctx: PrimaryExp3Context) => void;
 	/**
+	 * Enter a parse tree produced by the `primaryExp4`
+	 * labeled alternative in `SysY2022EParser.primaryExp`.
+	 * @param ctx the parse tree
+	 */
+	enterPrimaryExp4?: (ctx: PrimaryExp4Context) => void;
+	/**
+	 * Exit a parse tree produced by the `primaryExp4`
+	 * labeled alternative in `SysY2022EParser.primaryExp`.
+	 * @param ctx the parse tree
+	 */
+	exitPrimaryExp4?: (ctx: PrimaryExp4Context) => void;
+	/**
+	 * Enter a parse tree produced by `SysY2022EParser.lambdaExp`.
+	 * @param ctx the parse tree
+	 */
+	enterLambdaExp?: (ctx: LambdaExpContext) => void;
+	/**
+	 * Exit a parse tree produced by `SysY2022EParser.lambdaExp`.
+	 * @param ctx the parse tree
+	 */
+	exitLambdaExp?: (ctx: LambdaExpContext) => void;
+	/**
 	 * Enter a parse tree produced by `SysY2022EParser.number`.
 	 * @param ctx the parse tree
 	 */
@@ -432,6 +523,18 @@ export default class SysY2022EListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	exitUnary3?: (ctx: Unary3Context) => void;
+	/**
+	 * Enter a parse tree produced by the `unary4`
+	 * labeled alternative in `SysY2022EParser.unaryExp`.
+	 * @param ctx the parse tree
+	 */
+	enterUnary4?: (ctx: Unary4Context) => void;
+	/**
+	 * Exit a parse tree produced by the `unary4`
+	 * labeled alternative in `SysY2022EParser.unaryExp`.
+	 * @param ctx the parse tree
+	 */
+	exitUnary4?: (ctx: Unary4Context) => void;
 	/**
 	 * Enter a parse tree produced by `SysY2022EParser.unaryOp`.
 	 * @param ctx the parse tree

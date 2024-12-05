@@ -3,17 +3,65 @@
 import {ParseTreeVisitor} from 'antlr4';
 
 import { 
-    CompUnitContext, DeclContext, ConstDeclContext, BTypeContext, ConstDefContext, 
-    ScalarConstInitValContext, ListConstInitValContext, VarDeclContext, UninitVarDefContext, 
-    InitVarDefContext, ScalarInitValContext, ListInitvalContext, FuncDefContext, FuncTypeContext, 
-    FuncFParamsContext, FuncFParamContext, BlockContext, BlockItemContext, AssignmentContext, 
-    ExpStmtContext, BlockStmtContext, IfStmt1Context, IfStmt2Context, WhileStmtContext, 
-    BreakStmtContext, ContinueStmtContext, ReturnStmtContext, ExpContext, CondContext, 
-    LValContext, PrimaryExp1Context, PrimaryExp2Context, PrimaryExp3Context, NumberContext, 
-    Unary1Context, Unary2Context, Unary3Context, UnaryOpContext, FuncRParamsContext, 
-    ExpAsRParamContext, StringAsRParamContext, Mul2Context, Mul1Context, Add2Context, 
-    Add1Context, Rel2Context, Rel1Context, Eq1Context, Eq2Context, LAnd2Context, 
-    LAnd1Context, LOr1Context, LOr2Context, ConstExpContext 
+    CompUnitContext, 
+    DeclContext, 
+    ConstDeclContext, 
+    BTypeContext, 
+    ConstDefContext, 
+    ScalarConstInitValContext, 
+    ListConstInitValContext, 
+    StructDeclContext, 
+    LambdaTypeContext, 
+    VarDeclContext, 
+    UninitVarDefContext, 
+    InitVarDefContext, 
+    ScalarInitValContext, 
+    ListInitvalContext, 
+    FuncDefContext, 
+    FuncTypeContext, 
+    FuncFParamsContext, 
+    FuncFParamContext, 
+    BlockContext, 
+    BlockItemContext, 
+    AssignmentContext, 
+    ExpStmtContext, 
+    BlockStmtContext, 
+    IfStmt1Context, 
+    IfStmt2Context, 
+    WhileStmtContext, 
+    BreakStmtContext, 
+    ContinueStmtContext, 
+    ReturnStmtContext, 
+    ExpContext, 
+    CondContext, 
+    LValContext, 
+    PrimaryExp1Context, 
+    PrimaryExp2Context, 
+    PrimaryExp3Context, 
+    PrimaryExp4Context, 
+    LambdaExpContext, 
+    NumberContext, 
+    Unary1Context, 
+    Unary2Context, 
+    Unary3Context, 
+    Unary4Context, 
+    UnaryOpContext, 
+    FuncRParamsContext, 
+    ExpAsRParamContext, 
+    StringAsRParamContext, 
+    Mul2Context, 
+    Mul1Context, 
+    Add2Context, 
+    Add1Context, 
+    Rel2Context, 
+    Rel1Context, 
+    Eq1Context, 
+    Eq2Context, 
+    LAnd2Context, 
+    LAnd1Context, 
+    LOr1Context, 
+    LOr2Context, 
+    ConstExpContext 
 } from "../parser/SysY2022EParser";
 
 
@@ -69,6 +117,18 @@ export default class SysY2022EVisitor<Result> extends ParseTreeVisitor<Result> {
 	 * @return the visitor result
 	 */
 	visitListConstInitVal?: (ctx: ListConstInitValContext) => Result;
+	/**
+	 * Visit a parse tree produced by `SysY2022EParser.structDecl`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitStructDecl?: (ctx: StructDeclContext) => Result;
+	/**
+	 * Visit a parse tree produced by `SysY2022EParser.lambdaType`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitLambdaType?: (ctx: LambdaTypeContext) => Result;
 	/**
 	 * Visit a parse tree produced by `SysY2022EParser.varDecl`.
 	 * @param ctx the parse tree
@@ -242,6 +302,19 @@ export default class SysY2022EVisitor<Result> extends ParseTreeVisitor<Result> {
 	 */
 	visitPrimaryExp3?: (ctx: PrimaryExp3Context) => Result;
 	/**
+	 * Visit a parse tree produced by the `primaryExp4`
+	 * labeled alternative in `SysY2022EParser.primaryExp`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitPrimaryExp4?: (ctx: PrimaryExp4Context) => Result;
+	/**
+	 * Visit a parse tree produced by `SysY2022EParser.lambdaExp`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitLambdaExp?: (ctx: LambdaExpContext) => Result;
+	/**
 	 * Visit a parse tree produced by `SysY2022EParser.number`.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -268,6 +341,13 @@ export default class SysY2022EVisitor<Result> extends ParseTreeVisitor<Result> {
 	 * @return the visitor result
 	 */
 	visitUnary3?: (ctx: Unary3Context) => Result;
+	/**
+	 * Visit a parse tree produced by the `unary4`
+	 * labeled alternative in `SysY2022EParser.unaryExp`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitUnary4?: (ctx: Unary4Context) => Result;
 	/**
 	 * Visit a parse tree produced by `SysY2022EParser.unaryOp`.
 	 * @param ctx the parse tree
