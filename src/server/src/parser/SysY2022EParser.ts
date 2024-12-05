@@ -30,38 +30,43 @@ export class SysY2022EParser extends Parser {
 	public static readonly BREAK = 9;
 	public static readonly CONTINUE = 10;
 	public static readonly FOR = 11;
-	public static readonly LP = 12;
-	public static readonly RP = 13;
-	public static readonly LB = 14;
-	public static readonly RB = 15;
-	public static readonly LC = 16;
-	public static readonly RC = 17;
-	public static readonly COMMA = 18;
-	public static readonly SEMICOLON = 19;
-	public static readonly QUESTION = 20;
-	public static readonly COLON = 21;
-	public static readonly MINUS = 22;
-	public static readonly NOT = 23;
-	public static readonly ASSIGN = 24;
-	public static readonly ADD = 25;
-	public static readonly MUL = 26;
-	public static readonly DIV = 27;
-	public static readonly MOD = 28;
-	public static readonly AND = 29;
-	public static readonly OR = 30;
-	public static readonly EQ = 31;
-	public static readonly NEQ = 32;
-	public static readonly LT = 33;
-	public static readonly LE = 34;
-	public static readonly GT = 35;
-	public static readonly GE = 36;
-	public static readonly INT_LIT = 37;
-	public static readonly FLOAT_LIT = 38;
-	public static readonly ID = 39;
-	public static readonly STRING = 40;
-	public static readonly WS = 41;
-	public static readonly LINE_COMMENT = 42;
-	public static readonly BLOCK_COMMENT = 43;
+	public static readonly STRUCT = 12;
+	public static readonly LP = 13;
+	public static readonly RP = 14;
+	public static readonly LB = 15;
+	public static readonly RB = 16;
+	public static readonly LC = 17;
+	public static readonly RC = 18;
+	public static readonly COMMA = 19;
+	public static readonly SEMICOLON = 20;
+	public static readonly QUESTION = 21;
+	public static readonly COLON = 22;
+	public static readonly MINUS = 23;
+	public static readonly NOT = 24;
+	public static readonly ASSIGN = 25;
+	public static readonly ADD = 26;
+	public static readonly MUL = 27;
+	public static readonly DIV = 28;
+	public static readonly MOD = 29;
+	public static readonly AND = 30;
+	public static readonly OR = 31;
+	public static readonly EQ = 32;
+	public static readonly NEQ = 33;
+	public static readonly LT = 34;
+	public static readonly LE = 35;
+	public static readonly GT = 36;
+	public static readonly GE = 37;
+	public static readonly LAMBDA = 38;
+	public static readonly POINT = 39;
+	public static readonly DOT = 40;
+	public static readonly INT_LIT = 41;
+	public static readonly FLOAT_LIT = 42;
+	public static readonly ID = 43;
+	public static readonly STRUCTNAME = 44;
+	public static readonly STRING = 45;
+	public static readonly WS = 46;
+	public static readonly LINE_COMMENT = 47;
+	public static readonly BLOCK_COMMENT = 48;
 	public static readonly EOF = Token.EOF;
 	public static readonly RULE_compUnit = 0;
 	public static readonly RULE_decl = 1;
@@ -69,62 +74,67 @@ export class SysY2022EParser extends Parser {
 	public static readonly RULE_bType = 3;
 	public static readonly RULE_constDef = 4;
 	public static readonly RULE_constInitVal = 5;
-	public static readonly RULE_varDecl = 6;
-	public static readonly RULE_varDef = 7;
-	public static readonly RULE_initVal = 8;
-	public static readonly RULE_funcDef = 9;
-	public static readonly RULE_funcType = 10;
-	public static readonly RULE_funcFParams = 11;
-	public static readonly RULE_funcFParam = 12;
-	public static readonly RULE_block = 13;
-	public static readonly RULE_blockItem = 14;
-	public static readonly RULE_stmt = 15;
-	public static readonly RULE_exp = 16;
-	public static readonly RULE_cond = 17;
-	public static readonly RULE_lVal = 18;
-	public static readonly RULE_primaryExp = 19;
-	public static readonly RULE_number = 20;
-	public static readonly RULE_unaryExp = 21;
-	public static readonly RULE_unaryOp = 22;
-	public static readonly RULE_funcRParams = 23;
-	public static readonly RULE_funcRParam = 24;
-	public static readonly RULE_mulExp = 25;
-	public static readonly RULE_addExp = 26;
-	public static readonly RULE_relExp = 27;
-	public static readonly RULE_eqExp = 28;
-	public static readonly RULE_lAndExp = 29;
-	public static readonly RULE_lOrExp = 30;
-	public static readonly RULE_constExp = 31;
+	public static readonly RULE_structDecl = 6;
+	public static readonly RULE_lambdaType = 7;
+	public static readonly RULE_varDecl = 8;
+	public static readonly RULE_varDef = 9;
+	public static readonly RULE_initVal = 10;
+	public static readonly RULE_funcDef = 11;
+	public static readonly RULE_funcType = 12;
+	public static readonly RULE_funcFParams = 13;
+	public static readonly RULE_funcFParam = 14;
+	public static readonly RULE_block = 15;
+	public static readonly RULE_blockItem = 16;
+	public static readonly RULE_stmt = 17;
+	public static readonly RULE_exp = 18;
+	public static readonly RULE_cond = 19;
+	public static readonly RULE_lVal = 20;
+	public static readonly RULE_primaryExp = 21;
+	public static readonly RULE_lambdaExp = 22;
+	public static readonly RULE_number = 23;
+	public static readonly RULE_unaryExp = 24;
+	public static readonly RULE_unaryOp = 25;
+	public static readonly RULE_funcRParams = 26;
+	public static readonly RULE_funcRParam = 27;
+	public static readonly RULE_mulExp = 28;
+	public static readonly RULE_addExp = 29;
+	public static readonly RULE_relExp = 30;
+	public static readonly RULE_eqExp = 31;
+	public static readonly RULE_lAndExp = 32;
+	public static readonly RULE_lOrExp = 33;
+	public static readonly RULE_constExp = 34;
 	public static readonly literalNames: (string | null)[] = [ null, "'int'", 
                                                             "'float'", "'void'", 
                                                             "'const'", "'return'", 
                                                             "'if'", "'else'", 
                                                             "'while'", "'break'", 
                                                             "'continue'", 
-                                                            "'for'", "'('", 
-                                                            "')'", "'['", 
-                                                            "']'", "'{'", 
-                                                            "'}'", "','", 
-                                                            "';'", "'?'", 
-                                                            "':'", "'-'", 
-                                                            "'!'", "'='", 
-                                                            "'+'", "'*'", 
-                                                            "'/'", "'%'", 
-                                                            "'&&'", "'||'", 
-                                                            "'=='", "'!='", 
-                                                            "'<'", "'<='", 
-                                                            "'>'", "'>='" ];
+                                                            "'for'", "'struct'", 
+                                                            "'('", "')'", 
+                                                            "'['", "']'", 
+                                                            "'{'", "'}'", 
+                                                            "','", "';'", 
+                                                            "'?'", "':'", 
+                                                            "'-'", "'!'", 
+                                                            "'='", "'+'", 
+                                                            "'*'", "'/'", 
+                                                            "'%'", "'&&'", 
+                                                            "'||'", "'=='", 
+                                                            "'!='", "'<'", 
+                                                            "'<='", "'>'", 
+                                                            "'>='", "'^'", 
+                                                            "'.'", "'->'" ];
 	public static readonly symbolicNames: (string | null)[] = [ null, "INT", 
                                                              "FLOAT", "VOID", 
                                                              "CONST", "RETURN", 
                                                              "IF", "ELSE", 
                                                              "WHILE", "BREAK", 
                                                              "CONTINUE", 
-                                                             "FOR", "LP", 
-                                                             "RP", "LB", 
-                                                             "RB", "LC", 
-                                                             "RC", "COMMA", 
-                                                             "SEMICOLON", 
+                                                             "FOR", "STRUCT", 
+                                                             "LP", "RP", 
+                                                             "LB", "RB", 
+                                                             "LC", "RC", 
+                                                             "COMMA", "SEMICOLON", 
                                                              "QUESTION", 
                                                              "COLON", "MINUS", 
                                                              "NOT", "ASSIGN", 
@@ -134,18 +144,21 @@ export class SysY2022EParser extends Parser {
                                                              "EQ", "NEQ", 
                                                              "LT", "LE", 
                                                              "GT", "GE", 
-                                                             "INT_LIT", 
+                                                             "LAMBDA", "POINT", 
+                                                             "DOT", "INT_LIT", 
                                                              "FLOAT_LIT", 
-                                                             "ID", "STRING", 
-                                                             "WS", "LINE_COMMENT", 
+                                                             "ID", "STRUCTNAME", 
+                                                             "STRING", "WS", 
+                                                             "LINE_COMMENT", 
                                                              "BLOCK_COMMENT" ];
 	// tslint:disable:no-trailing-whitespace
 	public static readonly ruleNames: string[] = [
 		"compUnit", "decl", "constDecl", "bType", "constDef", "constInitVal", 
-		"varDecl", "varDef", "initVal", "funcDef", "funcType", "funcFParams", 
-		"funcFParam", "block", "blockItem", "stmt", "exp", "cond", "lVal", "primaryExp", 
-		"number", "unaryExp", "unaryOp", "funcRParams", "funcRParam", "mulExp", 
-		"addExp", "relExp", "eqExp", "lAndExp", "lOrExp", "constExp",
+		"structDecl", "lambdaType", "varDecl", "varDef", "initVal", "funcDef", 
+		"funcType", "funcFParams", "funcFParam", "block", "blockItem", "stmt", 
+		"exp", "cond", "lVal", "primaryExp", "lambdaExp", "number", "unaryExp", 
+		"unaryOp", "funcRParams", "funcRParam", "mulExp", "addExp", "relExp", 
+		"eqExp", "lAndExp", "lOrExp", "constExp",
 	];
 	public get grammarFileName(): string { return "SysY2022E.g4"; }
 	public get literalNames(): (string | null)[] { return SysY2022EParser.literalNames; }
@@ -169,33 +182,33 @@ export class SysY2022EParser extends Parser {
 		try {
 			this.enterOuterAlt(localctx, 1);
 			{
-			this.state = 68;
+			this.state = 74;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
-			while ((((_la) & ~0x1F) === 0 && ((1 << _la) & 30) !== 0)) {
+			while ((((_la) & ~0x1F) === 0 && ((1 << _la) & 12318) !== 0) || _la===44) {
 				{
-				this.state = 66;
+				this.state = 72;
 				this._errHandler.sync(this);
 				switch ( this._interp.adaptivePredict(this._input, 0, this._ctx) ) {
 				case 1:
 					{
-					this.state = 64;
+					this.state = 70;
 					this.decl();
 					}
 					break;
 				case 2:
 					{
-					this.state = 65;
+					this.state = 71;
 					this.funcDef();
 					}
 					break;
 				}
 				}
-				this.state = 70;
+				this.state = 76;
 				this._errHandler.sync(this);
 				_la = this._input.LA(1);
 			}
-			this.state = 71;
+			this.state = 77;
 			this.match(SysY2022EParser.EOF);
 			}
 		}
@@ -218,22 +231,31 @@ export class SysY2022EParser extends Parser {
 		let localctx: DeclContext = new DeclContext(this, this._ctx, this.state);
 		this.enterRule(localctx, 2, SysY2022EParser.RULE_decl);
 		try {
-			this.state = 75;
+			this.state = 82;
 			this._errHandler.sync(this);
 			switch (this._input.LA(1)) {
 			case 4:
 				this.enterOuterAlt(localctx, 1);
 				{
-				this.state = 73;
+				this.state = 79;
 				this.constDecl();
 				}
 				break;
 			case 1:
 			case 2:
+			case 13:
+			case 44:
 				this.enterOuterAlt(localctx, 2);
 				{
-				this.state = 74;
+				this.state = 80;
 				this.varDecl();
+				}
+				break;
+			case 12:
+				this.enterOuterAlt(localctx, 3);
+				{
+				this.state = 81;
+				this.structDecl();
 				}
 				break;
 			default:
@@ -262,29 +284,29 @@ export class SysY2022EParser extends Parser {
 		try {
 			this.enterOuterAlt(localctx, 1);
 			{
-			this.state = 77;
-			this.match(SysY2022EParser.CONST);
-			this.state = 78;
-			this.bType();
-			this.state = 79;
-			this.constDef();
 			this.state = 84;
+			this.match(SysY2022EParser.CONST);
+			this.state = 85;
+			this.bType();
+			this.state = 86;
+			this.constDef();
+			this.state = 91;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
-			while (_la===18) {
+			while (_la===19) {
 				{
 				{
-				this.state = 80;
+				this.state = 87;
 				this.match(SysY2022EParser.COMMA);
-				this.state = 81;
+				this.state = 88;
 				this.constDef();
 				}
 				}
-				this.state = 86;
+				this.state = 93;
 				this._errHandler.sync(this);
 				_la = this._input.LA(1);
 			}
-			this.state = 87;
+			this.state = 94;
 			this.match(SysY2022EParser.SEMICOLON);
 			}
 		}
@@ -306,19 +328,40 @@ export class SysY2022EParser extends Parser {
 	public bType(): BTypeContext {
 		let localctx: BTypeContext = new BTypeContext(this, this._ctx, this.state);
 		this.enterRule(localctx, 6, SysY2022EParser.RULE_bType);
-		let _la: number;
 		try {
-			this.enterOuterAlt(localctx, 1);
-			{
-			this.state = 89;
-			_la = this._input.LA(1);
-			if(!(_la===1 || _la===2)) {
-			this._errHandler.recoverInline(this);
-			}
-			else {
-				this._errHandler.reportMatch(this);
-			    this.consume();
-			}
+			this.state = 100;
+			this._errHandler.sync(this);
+			switch (this._input.LA(1)) {
+			case 1:
+				this.enterOuterAlt(localctx, 1);
+				{
+				this.state = 96;
+				this.match(SysY2022EParser.INT);
+				}
+				break;
+			case 2:
+				this.enterOuterAlt(localctx, 2);
+				{
+				this.state = 97;
+				this.match(SysY2022EParser.FLOAT);
+				}
+				break;
+			case 44:
+				this.enterOuterAlt(localctx, 3);
+				{
+				this.state = 98;
+				this.match(SysY2022EParser.STRUCTNAME);
+				}
+				break;
+			case 13:
+				this.enterOuterAlt(localctx, 4);
+				{
+				this.state = 99;
+				this.lambdaType();
+				}
+				break;
+			default:
+				throw new NoViableAltException(this);
 			}
 		}
 		catch (re) {
@@ -343,29 +386,29 @@ export class SysY2022EParser extends Parser {
 		try {
 			this.enterOuterAlt(localctx, 1);
 			{
-			this.state = 91;
+			this.state = 102;
 			this.match(SysY2022EParser.ID);
-			this.state = 98;
+			this.state = 109;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
-			while (_la===14) {
+			while (_la===15) {
 				{
 				{
-				this.state = 92;
+				this.state = 103;
 				this.match(SysY2022EParser.LB);
-				this.state = 93;
+				this.state = 104;
 				this.constExp();
-				this.state = 94;
+				this.state = 105;
 				this.match(SysY2022EParser.RB);
 				}
 				}
-				this.state = 100;
+				this.state = 111;
 				this._errHandler.sync(this);
 				_la = this._input.LA(1);
 			}
-			this.state = 101;
+			this.state = 112;
 			this.match(SysY2022EParser.ASSIGN);
-			this.state = 102;
+			this.state = 113;
 			this.constInitVal();
 			}
 		}
@@ -389,56 +432,57 @@ export class SysY2022EParser extends Parser {
 		this.enterRule(localctx, 10, SysY2022EParser.RULE_constInitVal);
 		let _la: number;
 		try {
-			this.state = 117;
+			this.state = 128;
 			this._errHandler.sync(this);
 			switch (this._input.LA(1)) {
-			case 12:
-			case 22:
+			case 13:
 			case 23:
-			case 25:
-			case 37:
+			case 24:
+			case 26:
 			case 38:
-			case 39:
+			case 41:
+			case 42:
+			case 43:
 				localctx = new ScalarConstInitValContext(this, localctx);
 				this.enterOuterAlt(localctx, 1);
 				{
-				this.state = 104;
+				this.state = 115;
 				this.constExp();
 				}
 				break;
-			case 16:
+			case 17:
 				localctx = new ListConstInitValContext(this, localctx);
 				this.enterOuterAlt(localctx, 2);
 				{
-				this.state = 105;
+				this.state = 116;
 				this.match(SysY2022EParser.LC);
-				this.state = 114;
+				this.state = 125;
 				this._errHandler.sync(this);
 				_la = this._input.LA(1);
-				if (((((_la - 12)) & ~0x1F) === 0 && ((1 << (_la - 12)) & 234892305) !== 0)) {
+				if (((((_la - 13)) & ~0x1F) === 0 && ((1 << (_la - 13)) & 1912613905) !== 0)) {
 					{
-					this.state = 106;
+					this.state = 117;
 					this.constInitVal();
-					this.state = 111;
+					this.state = 122;
 					this._errHandler.sync(this);
 					_la = this._input.LA(1);
-					while (_la===18) {
+					while (_la===19) {
 						{
 						{
-						this.state = 107;
+						this.state = 118;
 						this.match(SysY2022EParser.COMMA);
-						this.state = 108;
+						this.state = 119;
 						this.constInitVal();
 						}
 						}
-						this.state = 113;
+						this.state = 124;
 						this._errHandler.sync(this);
 						_la = this._input.LA(1);
 					}
 					}
 				}
 
-				this.state = 116;
+				this.state = 127;
 				this.match(SysY2022EParser.RC);
 				}
 				break;
@@ -461,34 +505,140 @@ export class SysY2022EParser extends Parser {
 		return localctx;
 	}
 	// @RuleVersion(0)
-	public varDecl(): VarDeclContext {
-		let localctx: VarDeclContext = new VarDeclContext(this, this._ctx, this.state);
-		this.enterRule(localctx, 12, SysY2022EParser.RULE_varDecl);
+	public structDecl(): StructDeclContext {
+		let localctx: StructDeclContext = new StructDeclContext(this, this._ctx, this.state);
+		this.enterRule(localctx, 12, SysY2022EParser.RULE_structDecl);
 		let _la: number;
 		try {
 			this.enterOuterAlt(localctx, 1);
 			{
-			this.state = 119;
+			this.state = 130;
+			this.match(SysY2022EParser.STRUCT);
+			this.state = 131;
+			this.match(SysY2022EParser.STRUCTNAME);
+			this.state = 132;
+			this.match(SysY2022EParser.LC);
+			this.state = 133;
 			this.bType();
-			this.state = 120;
+			this.state = 134;
 			this.varDef();
-			this.state = 125;
+			this.state = 141;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
-			while (_la===18) {
+			while (_la===19) {
 				{
 				{
-				this.state = 121;
+				this.state = 135;
 				this.match(SysY2022EParser.COMMA);
-				this.state = 122;
+				this.state = 136;
+				this.bType();
+				this.state = 137;
 				this.varDef();
 				}
 				}
-				this.state = 127;
+				this.state = 143;
 				this._errHandler.sync(this);
 				_la = this._input.LA(1);
 			}
-			this.state = 128;
+			this.state = 144;
+			this.match(SysY2022EParser.RC);
+			this.state = 145;
+			this.match(SysY2022EParser.SEMICOLON);
+			}
+		}
+		catch (re) {
+			if (re instanceof RecognitionException) {
+				localctx.exception = re;
+				this._errHandler.reportError(this, re);
+				this._errHandler.recover(this, re);
+			} else {
+				throw re;
+			}
+		}
+		finally {
+			this.exitRule();
+		}
+		return localctx;
+	}
+	// @RuleVersion(0)
+	public lambdaType(): LambdaTypeContext {
+		let localctx: LambdaTypeContext = new LambdaTypeContext(this, this._ctx, this.state);
+		this.enterRule(localctx, 14, SysY2022EParser.RULE_lambdaType);
+		let _la: number;
+		try {
+			this.enterOuterAlt(localctx, 1);
+			{
+			this.state = 147;
+			this.match(SysY2022EParser.LP);
+			this.state = 148;
+			this.bType();
+			this.state = 153;
+			this._errHandler.sync(this);
+			_la = this._input.LA(1);
+			while (_la===19) {
+				{
+				{
+				this.state = 149;
+				this.match(SysY2022EParser.COMMA);
+				this.state = 150;
+				this.bType();
+				}
+				}
+				this.state = 155;
+				this._errHandler.sync(this);
+				_la = this._input.LA(1);
+			}
+			this.state = 156;
+			this.match(SysY2022EParser.RP);
+			this.state = 157;
+			this.match(SysY2022EParser.DOT);
+			this.state = 158;
+			this.bType();
+			}
+		}
+		catch (re) {
+			if (re instanceof RecognitionException) {
+				localctx.exception = re;
+				this._errHandler.reportError(this, re);
+				this._errHandler.recover(this, re);
+			} else {
+				throw re;
+			}
+		}
+		finally {
+			this.exitRule();
+		}
+		return localctx;
+	}
+	// @RuleVersion(0)
+	public varDecl(): VarDeclContext {
+		let localctx: VarDeclContext = new VarDeclContext(this, this._ctx, this.state);
+		this.enterRule(localctx, 16, SysY2022EParser.RULE_varDecl);
+		let _la: number;
+		try {
+			this.enterOuterAlt(localctx, 1);
+			{
+			this.state = 160;
+			this.bType();
+			this.state = 161;
+			this.varDef();
+			this.state = 166;
+			this._errHandler.sync(this);
+			_la = this._input.LA(1);
+			while (_la===19) {
+				{
+				{
+				this.state = 162;
+				this.match(SysY2022EParser.COMMA);
+				this.state = 163;
+				this.varDef();
+				}
+				}
+				this.state = 168;
+				this._errHandler.sync(this);
+				_la = this._input.LA(1);
+			}
+			this.state = 169;
 			this.match(SysY2022EParser.SEMICOLON);
 			}
 		}
@@ -509,33 +659,33 @@ export class SysY2022EParser extends Parser {
 	// @RuleVersion(0)
 	public varDef(): VarDefContext {
 		let localctx: VarDefContext = new VarDefContext(this, this._ctx, this.state);
-		this.enterRule(localctx, 14, SysY2022EParser.RULE_varDef);
+		this.enterRule(localctx, 18, SysY2022EParser.RULE_varDef);
 		let _la: number;
 		try {
-			this.state = 152;
+			this.state = 193;
 			this._errHandler.sync(this);
-			switch ( this._interp.adaptivePredict(this._input, 11, this._ctx) ) {
+			switch ( this._interp.adaptivePredict(this._input, 14, this._ctx) ) {
 			case 1:
 				localctx = new UninitVarDefContext(this, localctx);
 				this.enterOuterAlt(localctx, 1);
 				{
-				this.state = 130;
+				this.state = 171;
 				this.match(SysY2022EParser.ID);
-				this.state = 137;
+				this.state = 178;
 				this._errHandler.sync(this);
 				_la = this._input.LA(1);
-				while (_la===14) {
+				while (_la===15) {
 					{
 					{
-					this.state = 131;
+					this.state = 172;
 					this.match(SysY2022EParser.LB);
-					this.state = 132;
+					this.state = 173;
 					this.constExp();
-					this.state = 133;
+					this.state = 174;
 					this.match(SysY2022EParser.RB);
 					}
 					}
-					this.state = 139;
+					this.state = 180;
 					this._errHandler.sync(this);
 					_la = this._input.LA(1);
 				}
@@ -545,29 +695,29 @@ export class SysY2022EParser extends Parser {
 				localctx = new InitVarDefContext(this, localctx);
 				this.enterOuterAlt(localctx, 2);
 				{
-				this.state = 140;
+				this.state = 181;
 				this.match(SysY2022EParser.ID);
-				this.state = 147;
+				this.state = 188;
 				this._errHandler.sync(this);
 				_la = this._input.LA(1);
-				while (_la===14) {
+				while (_la===15) {
 					{
 					{
-					this.state = 141;
+					this.state = 182;
 					this.match(SysY2022EParser.LB);
-					this.state = 142;
+					this.state = 183;
 					this.constExp();
-					this.state = 143;
+					this.state = 184;
 					this.match(SysY2022EParser.RB);
 					}
 					}
-					this.state = 149;
+					this.state = 190;
 					this._errHandler.sync(this);
 					_la = this._input.LA(1);
 				}
-				this.state = 150;
+				this.state = 191;
 				this.match(SysY2022EParser.ASSIGN);
-				this.state = 151;
+				this.state = 192;
 				this.initVal();
 				}
 				break;
@@ -590,59 +740,60 @@ export class SysY2022EParser extends Parser {
 	// @RuleVersion(0)
 	public initVal(): InitValContext {
 		let localctx: InitValContext = new InitValContext(this, this._ctx, this.state);
-		this.enterRule(localctx, 16, SysY2022EParser.RULE_initVal);
+		this.enterRule(localctx, 20, SysY2022EParser.RULE_initVal);
 		let _la: number;
 		try {
-			this.state = 167;
+			this.state = 208;
 			this._errHandler.sync(this);
 			switch (this._input.LA(1)) {
-			case 12:
-			case 22:
+			case 13:
 			case 23:
-			case 25:
-			case 37:
+			case 24:
+			case 26:
 			case 38:
-			case 39:
+			case 41:
+			case 42:
+			case 43:
 				localctx = new ScalarInitValContext(this, localctx);
 				this.enterOuterAlt(localctx, 1);
 				{
-				this.state = 154;
+				this.state = 195;
 				this.exp();
 				}
 				break;
-			case 16:
+			case 17:
 				localctx = new ListInitvalContext(this, localctx);
 				this.enterOuterAlt(localctx, 2);
 				{
-				this.state = 155;
+				this.state = 196;
 				this.match(SysY2022EParser.LC);
-				this.state = 164;
+				this.state = 205;
 				this._errHandler.sync(this);
 				_la = this._input.LA(1);
-				if (((((_la - 12)) & ~0x1F) === 0 && ((1 << (_la - 12)) & 234892305) !== 0)) {
+				if (((((_la - 13)) & ~0x1F) === 0 && ((1 << (_la - 13)) & 1912613905) !== 0)) {
 					{
-					this.state = 156;
+					this.state = 197;
 					this.initVal();
-					this.state = 161;
+					this.state = 202;
 					this._errHandler.sync(this);
 					_la = this._input.LA(1);
-					while (_la===18) {
+					while (_la===19) {
 						{
 						{
-						this.state = 157;
+						this.state = 198;
 						this.match(SysY2022EParser.COMMA);
-						this.state = 158;
+						this.state = 199;
 						this.initVal();
 						}
 						}
-						this.state = 163;
+						this.state = 204;
 						this._errHandler.sync(this);
 						_la = this._input.LA(1);
 					}
 					}
 				}
 
-				this.state = 166;
+				this.state = 207;
 				this.match(SysY2022EParser.RC);
 				}
 				break;
@@ -667,30 +818,30 @@ export class SysY2022EParser extends Parser {
 	// @RuleVersion(0)
 	public funcDef(): FuncDefContext {
 		let localctx: FuncDefContext = new FuncDefContext(this, this._ctx, this.state);
-		this.enterRule(localctx, 18, SysY2022EParser.RULE_funcDef);
+		this.enterRule(localctx, 22, SysY2022EParser.RULE_funcDef);
 		let _la: number;
 		try {
 			this.enterOuterAlt(localctx, 1);
 			{
-			this.state = 169;
+			this.state = 210;
 			this.funcType();
-			this.state = 170;
+			this.state = 211;
 			this.match(SysY2022EParser.ID);
-			this.state = 171;
+			this.state = 212;
 			this.match(SysY2022EParser.LP);
-			this.state = 173;
+			this.state = 214;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
-			if (_la===1 || _la===2) {
+			if ((((_la) & ~0x1F) === 0 && ((1 << _la) & 8198) !== 0) || _la===44) {
 				{
-				this.state = 172;
+				this.state = 213;
 				this.funcFParams();
 				}
 			}
 
-			this.state = 175;
+			this.state = 216;
 			this.match(SysY2022EParser.RP);
-			this.state = 176;
+			this.state = 217;
 			this.block();
 			}
 		}
@@ -711,12 +862,12 @@ export class SysY2022EParser extends Parser {
 	// @RuleVersion(0)
 	public funcType(): FuncTypeContext {
 		let localctx: FuncTypeContext = new FuncTypeContext(this, this._ctx, this.state);
-		this.enterRule(localctx, 20, SysY2022EParser.RULE_funcType);
+		this.enterRule(localctx, 24, SysY2022EParser.RULE_funcType);
 		let _la: number;
 		try {
 			this.enterOuterAlt(localctx, 1);
 			{
-			this.state = 178;
+			this.state = 219;
 			_la = this._input.LA(1);
 			if(!((((_la) & ~0x1F) === 0 && ((1 << _la) & 14) !== 0))) {
 			this._errHandler.recoverInline(this);
@@ -744,26 +895,26 @@ export class SysY2022EParser extends Parser {
 	// @RuleVersion(0)
 	public funcFParams(): FuncFParamsContext {
 		let localctx: FuncFParamsContext = new FuncFParamsContext(this, this._ctx, this.state);
-		this.enterRule(localctx, 22, SysY2022EParser.RULE_funcFParams);
+		this.enterRule(localctx, 26, SysY2022EParser.RULE_funcFParams);
 		let _la: number;
 		try {
 			this.enterOuterAlt(localctx, 1);
 			{
-			this.state = 180;
+			this.state = 221;
 			this.funcFParam();
-			this.state = 185;
+			this.state = 226;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
-			while (_la===18) {
+			while (_la===19) {
 				{
 				{
-				this.state = 181;
+				this.state = 222;
 				this.match(SysY2022EParser.COMMA);
-				this.state = 182;
+				this.state = 223;
 				this.funcFParam();
 				}
 				}
-				this.state = 187;
+				this.state = 228;
 				this._errHandler.sync(this);
 				_la = this._input.LA(1);
 			}
@@ -786,39 +937,39 @@ export class SysY2022EParser extends Parser {
 	// @RuleVersion(0)
 	public funcFParam(): FuncFParamContext {
 		let localctx: FuncFParamContext = new FuncFParamContext(this, this._ctx, this.state);
-		this.enterRule(localctx, 24, SysY2022EParser.RULE_funcFParam);
+		this.enterRule(localctx, 28, SysY2022EParser.RULE_funcFParam);
 		let _la: number;
 		try {
 			this.enterOuterAlt(localctx, 1);
 			{
-			this.state = 188;
+			this.state = 229;
 			this.bType();
-			this.state = 189;
+			this.state = 230;
 			this.match(SysY2022EParser.ID);
-			this.state = 201;
+			this.state = 242;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
-			if (_la===14) {
+			if (_la===15) {
 				{
-				this.state = 190;
+				this.state = 231;
 				this.match(SysY2022EParser.LB);
-				this.state = 191;
+				this.state = 232;
 				this.match(SysY2022EParser.RB);
-				this.state = 198;
+				this.state = 239;
 				this._errHandler.sync(this);
 				_la = this._input.LA(1);
-				while (_la===14) {
+				while (_la===15) {
 					{
 					{
-					this.state = 192;
+					this.state = 233;
 					this.match(SysY2022EParser.LB);
-					this.state = 193;
+					this.state = 234;
 					this.constExp();
-					this.state = 194;
+					this.state = 235;
 					this.match(SysY2022EParser.RB);
 					}
 					}
-					this.state = 200;
+					this.state = 241;
 					this._errHandler.sync(this);
 					_la = this._input.LA(1);
 				}
@@ -844,28 +995,28 @@ export class SysY2022EParser extends Parser {
 	// @RuleVersion(0)
 	public block(): BlockContext {
 		let localctx: BlockContext = new BlockContext(this, this._ctx, this.state);
-		this.enterRule(localctx, 26, SysY2022EParser.RULE_block);
+		this.enterRule(localctx, 30, SysY2022EParser.RULE_block);
 		let _la: number;
 		try {
 			this.enterOuterAlt(localctx, 1);
 			{
-			this.state = 203;
+			this.state = 244;
 			this.match(SysY2022EParser.LC);
-			this.state = 207;
+			this.state = 248;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
-			while ((((_la) & ~0x1F) === 0 && ((1 << _la) & 46733174) !== 0) || ((((_la - 37)) & ~0x1F) === 0 && ((1 << (_la - 37)) & 7) !== 0)) {
+			while ((((_la) & ~0x1F) === 0 && ((1 << _la) & 93468534) !== 0) || ((((_la - 38)) & ~0x1F) === 0 && ((1 << (_la - 38)) & 121) !== 0)) {
 				{
 				{
-				this.state = 204;
+				this.state = 245;
 				this.blockItem();
 				}
 				}
-				this.state = 209;
+				this.state = 250;
 				this._errHandler.sync(this);
 				_la = this._input.LA(1);
 			}
-			this.state = 210;
+			this.state = 251;
 			this.match(SysY2022EParser.RC);
 			}
 		}
@@ -886,42 +1037,25 @@ export class SysY2022EParser extends Parser {
 	// @RuleVersion(0)
 	public blockItem(): BlockItemContext {
 		let localctx: BlockItemContext = new BlockItemContext(this, this._ctx, this.state);
-		this.enterRule(localctx, 28, SysY2022EParser.RULE_blockItem);
+		this.enterRule(localctx, 32, SysY2022EParser.RULE_blockItem);
 		try {
-			this.state = 214;
+			this.state = 255;
 			this._errHandler.sync(this);
-			switch (this._input.LA(1)) {
+			switch ( this._interp.adaptivePredict(this._input, 23, this._ctx) ) {
 			case 1:
-			case 2:
-			case 4:
 				this.enterOuterAlt(localctx, 1);
 				{
-				this.state = 212;
+				this.state = 253;
 				this.decl();
 				}
 				break;
-			case 5:
-			case 6:
-			case 8:
-			case 9:
-			case 10:
-			case 12:
-			case 16:
-			case 19:
-			case 22:
-			case 23:
-			case 25:
-			case 37:
-			case 38:
-			case 39:
+			case 2:
 				this.enterOuterAlt(localctx, 2);
 				{
-				this.state = 213;
+				this.state = 254;
 				this.stmt();
 				}
 				break;
-			default:
-				throw new NoViableAltException(this);
 			}
 		}
 		catch (re) {
@@ -941,23 +1075,23 @@ export class SysY2022EParser extends Parser {
 	// @RuleVersion(0)
 	public stmt(): StmtContext {
 		let localctx: StmtContext = new StmtContext(this, this._ctx, this.state);
-		this.enterRule(localctx, 30, SysY2022EParser.RULE_stmt);
+		this.enterRule(localctx, 34, SysY2022EParser.RULE_stmt);
 		let _la: number;
 		try {
-			this.state = 255;
+			this.state = 296;
 			this._errHandler.sync(this);
-			switch ( this._interp.adaptivePredict(this._input, 23, this._ctx) ) {
+			switch ( this._interp.adaptivePredict(this._input, 26, this._ctx) ) {
 			case 1:
 				localctx = new AssignmentContext(this, localctx);
 				this.enterOuterAlt(localctx, 1);
 				{
-				this.state = 216;
+				this.state = 257;
 				this.lVal();
-				this.state = 217;
+				this.state = 258;
 				this.match(SysY2022EParser.ASSIGN);
-				this.state = 218;
+				this.state = 259;
 				this.exp();
-				this.state = 219;
+				this.state = 260;
 				this.match(SysY2022EParser.SEMICOLON);
 				}
 				break;
@@ -965,17 +1099,17 @@ export class SysY2022EParser extends Parser {
 				localctx = new ExpStmtContext(this, localctx);
 				this.enterOuterAlt(localctx, 2);
 				{
-				this.state = 222;
+				this.state = 263;
 				this._errHandler.sync(this);
 				_la = this._input.LA(1);
-				if (((((_la - 12)) & ~0x1F) === 0 && ((1 << (_la - 12)) & 234892289) !== 0)) {
+				if (((((_la - 13)) & ~0x1F) === 0 && ((1 << (_la - 13)) & 1912613889) !== 0)) {
 					{
-					this.state = 221;
+					this.state = 262;
 					this.exp();
 					}
 				}
 
-				this.state = 224;
+				this.state = 265;
 				this.match(SysY2022EParser.SEMICOLON);
 				}
 				break;
@@ -983,7 +1117,7 @@ export class SysY2022EParser extends Parser {
 				localctx = new BlockStmtContext(this, localctx);
 				this.enterOuterAlt(localctx, 3);
 				{
-				this.state = 225;
+				this.state = 266;
 				this.block();
 				}
 				break;
@@ -991,15 +1125,15 @@ export class SysY2022EParser extends Parser {
 				localctx = new IfStmt1Context(this, localctx);
 				this.enterOuterAlt(localctx, 4);
 				{
-				this.state = 226;
+				this.state = 267;
 				this.match(SysY2022EParser.IF);
-				this.state = 227;
+				this.state = 268;
 				this.match(SysY2022EParser.LP);
-				this.state = 228;
+				this.state = 269;
 				this.cond();
-				this.state = 229;
+				this.state = 270;
 				this.match(SysY2022EParser.RP);
-				this.state = 230;
+				this.state = 271;
 				this.stmt();
 				}
 				break;
@@ -1007,19 +1141,19 @@ export class SysY2022EParser extends Parser {
 				localctx = new IfStmt2Context(this, localctx);
 				this.enterOuterAlt(localctx, 5);
 				{
-				this.state = 232;
+				this.state = 273;
 				this.match(SysY2022EParser.IF);
-				this.state = 233;
+				this.state = 274;
 				this.match(SysY2022EParser.LP);
-				this.state = 234;
+				this.state = 275;
 				this.cond();
-				this.state = 235;
+				this.state = 276;
 				this.match(SysY2022EParser.RP);
-				this.state = 236;
+				this.state = 277;
 				this.stmt();
-				this.state = 237;
+				this.state = 278;
 				this.match(SysY2022EParser.ELSE);
-				this.state = 238;
+				this.state = 279;
 				this.stmt();
 				}
 				break;
@@ -1027,15 +1161,15 @@ export class SysY2022EParser extends Parser {
 				localctx = new WhileStmtContext(this, localctx);
 				this.enterOuterAlt(localctx, 6);
 				{
-				this.state = 240;
+				this.state = 281;
 				this.match(SysY2022EParser.WHILE);
-				this.state = 241;
+				this.state = 282;
 				this.match(SysY2022EParser.LP);
-				this.state = 242;
+				this.state = 283;
 				this.cond();
-				this.state = 243;
+				this.state = 284;
 				this.match(SysY2022EParser.RP);
-				this.state = 244;
+				this.state = 285;
 				this.stmt();
 				}
 				break;
@@ -1043,9 +1177,9 @@ export class SysY2022EParser extends Parser {
 				localctx = new BreakStmtContext(this, localctx);
 				this.enterOuterAlt(localctx, 7);
 				{
-				this.state = 246;
+				this.state = 287;
 				this.match(SysY2022EParser.BREAK);
-				this.state = 247;
+				this.state = 288;
 				this.match(SysY2022EParser.SEMICOLON);
 				}
 				break;
@@ -1053,9 +1187,9 @@ export class SysY2022EParser extends Parser {
 				localctx = new ContinueStmtContext(this, localctx);
 				this.enterOuterAlt(localctx, 8);
 				{
-				this.state = 248;
+				this.state = 289;
 				this.match(SysY2022EParser.CONTINUE);
-				this.state = 249;
+				this.state = 290;
 				this.match(SysY2022EParser.SEMICOLON);
 				}
 				break;
@@ -1063,19 +1197,19 @@ export class SysY2022EParser extends Parser {
 				localctx = new ReturnStmtContext(this, localctx);
 				this.enterOuterAlt(localctx, 9);
 				{
-				this.state = 250;
+				this.state = 291;
 				this.match(SysY2022EParser.RETURN);
-				this.state = 252;
+				this.state = 293;
 				this._errHandler.sync(this);
 				_la = this._input.LA(1);
-				if (((((_la - 12)) & ~0x1F) === 0 && ((1 << (_la - 12)) & 234892289) !== 0)) {
+				if (((((_la - 13)) & ~0x1F) === 0 && ((1 << (_la - 13)) & 1912613889) !== 0)) {
 					{
-					this.state = 251;
+					this.state = 292;
 					this.exp();
 					}
 				}
 
-				this.state = 254;
+				this.state = 295;
 				this.match(SysY2022EParser.SEMICOLON);
 				}
 				break;
@@ -1098,11 +1232,11 @@ export class SysY2022EParser extends Parser {
 	// @RuleVersion(0)
 	public exp(): ExpContext {
 		let localctx: ExpContext = new ExpContext(this, this._ctx, this.state);
-		this.enterRule(localctx, 32, SysY2022EParser.RULE_exp);
+		this.enterRule(localctx, 36, SysY2022EParser.RULE_exp);
 		try {
 			this.enterOuterAlt(localctx, 1);
 			{
-			this.state = 257;
+			this.state = 298;
 			this.addExp(0);
 			}
 		}
@@ -1123,11 +1257,11 @@ export class SysY2022EParser extends Parser {
 	// @RuleVersion(0)
 	public cond(): CondContext {
 		let localctx: CondContext = new CondContext(this, this._ctx, this.state);
-		this.enterRule(localctx, 34, SysY2022EParser.RULE_cond);
+		this.enterRule(localctx, 38, SysY2022EParser.RULE_cond);
 		try {
 			this.enterOuterAlt(localctx, 1);
 			{
-			this.state = 259;
+			this.state = 300;
 			this.lOrExp(0);
 			}
 		}
@@ -1148,33 +1282,52 @@ export class SysY2022EParser extends Parser {
 	// @RuleVersion(0)
 	public lVal(): LValContext {
 		let localctx: LValContext = new LValContext(this, this._ctx, this.state);
-		this.enterRule(localctx, 36, SysY2022EParser.RULE_lVal);
+		this.enterRule(localctx, 40, SysY2022EParser.RULE_lVal);
 		try {
 			let _alt: number;
-			this.enterOuterAlt(localctx, 1);
-			{
-			this.state = 261;
-			this.match(SysY2022EParser.ID);
-			this.state = 268;
+			this.state = 315;
 			this._errHandler.sync(this);
-			_alt = this._interp.adaptivePredict(this._input, 24, this._ctx);
-			while (_alt !== 2 && _alt !== ATN.INVALID_ALT_NUMBER) {
-				if (_alt === 1) {
-					{
-					{
-					this.state = 262;
-					this.match(SysY2022EParser.LB);
-					this.state = 263;
-					this.exp();
-					this.state = 264;
-					this.match(SysY2022EParser.RB);
-					}
-					}
-				}
-				this.state = 270;
+			switch ( this._interp.adaptivePredict(this._input, 28, this._ctx) ) {
+			case 1:
+				localctx = new LVal1Context(this, localctx);
+				this.enterOuterAlt(localctx, 1);
+				{
+				this.state = 302;
+				this.match(SysY2022EParser.ID);
+				this.state = 309;
 				this._errHandler.sync(this);
-				_alt = this._interp.adaptivePredict(this._input, 24, this._ctx);
-			}
+				_alt = this._interp.adaptivePredict(this._input, 27, this._ctx);
+				while (_alt !== 2 && _alt !== ATN.INVALID_ALT_NUMBER) {
+					if (_alt === 1) {
+						{
+						{
+						this.state = 303;
+						this.match(SysY2022EParser.LB);
+						this.state = 304;
+						this.exp();
+						this.state = 305;
+						this.match(SysY2022EParser.RB);
+						}
+						}
+					}
+					this.state = 311;
+					this._errHandler.sync(this);
+					_alt = this._interp.adaptivePredict(this._input, 27, this._ctx);
+				}
+				}
+				break;
+			case 2:
+				localctx = new LVal2Context(this, localctx);
+				this.enterOuterAlt(localctx, 2);
+				{
+				this.state = 312;
+				this.match(SysY2022EParser.ID);
+				this.state = 313;
+				this.match(SysY2022EParser.POINT);
+				this.state = 314;
+				this.match(SysY2022EParser.ID);
+				}
+				break;
 			}
 		}
 		catch (re) {
@@ -1194,38 +1347,46 @@ export class SysY2022EParser extends Parser {
 	// @RuleVersion(0)
 	public primaryExp(): PrimaryExpContext {
 		let localctx: PrimaryExpContext = new PrimaryExpContext(this, this._ctx, this.state);
-		this.enterRule(localctx, 38, SysY2022EParser.RULE_primaryExp);
+		this.enterRule(localctx, 42, SysY2022EParser.RULE_primaryExp);
 		try {
-			this.state = 277;
+			this.state = 324;
 			this._errHandler.sync(this);
 			switch (this._input.LA(1)) {
-			case 12:
+			case 13:
 				localctx = new PrimaryExp1Context(this, localctx);
 				this.enterOuterAlt(localctx, 1);
 				{
-				this.state = 271;
+				this.state = 317;
 				this.match(SysY2022EParser.LP);
-				this.state = 272;
+				this.state = 318;
 				this.exp();
-				this.state = 273;
+				this.state = 319;
 				this.match(SysY2022EParser.RP);
 				}
 				break;
-			case 39:
+			case 43:
 				localctx = new PrimaryExp2Context(this, localctx);
 				this.enterOuterAlt(localctx, 2);
 				{
-				this.state = 275;
+				this.state = 321;
 				this.lVal();
 				}
 				break;
-			case 37:
-			case 38:
+			case 41:
+			case 42:
 				localctx = new PrimaryExp3Context(this, localctx);
 				this.enterOuterAlt(localctx, 3);
 				{
-				this.state = 276;
+				this.state = 322;
 				this.number_();
+				}
+				break;
+			case 38:
+				localctx = new PrimaryExp4Context(this, localctx);
+				this.enterOuterAlt(localctx, 4);
+				{
+				this.state = 323;
+				this.lambdaExp();
 				}
 				break;
 			default:
@@ -1247,16 +1408,70 @@ export class SysY2022EParser extends Parser {
 		return localctx;
 	}
 	// @RuleVersion(0)
-	public number_(): NumberContext {
-		let localctx: NumberContext = new NumberContext(this, this._ctx, this.state);
-		this.enterRule(localctx, 40, SysY2022EParser.RULE_number);
+	public lambdaExp(): LambdaExpContext {
+		let localctx: LambdaExpContext = new LambdaExpContext(this, this._ctx, this.state);
+		this.enterRule(localctx, 44, SysY2022EParser.RULE_lambdaExp);
 		let _la: number;
 		try {
 			this.enterOuterAlt(localctx, 1);
 			{
-			this.state = 279;
+			this.state = 326;
+			this.match(SysY2022EParser.LAMBDA);
+			this.state = 327;
+			this.match(SysY2022EParser.LP);
+			this.state = 328;
+			this.bType();
+			this.state = 329;
+			this.varDef();
+			this.state = 336;
+			this._errHandler.sync(this);
 			_la = this._input.LA(1);
-			if(!(_la===37 || _la===38)) {
+			while (_la===19) {
+				{
+				{
+				this.state = 330;
+				this.match(SysY2022EParser.COMMA);
+				this.state = 331;
+				this.bType();
+				this.state = 332;
+				this.varDef();
+				}
+				}
+				this.state = 338;
+				this._errHandler.sync(this);
+				_la = this._input.LA(1);
+			}
+			this.state = 339;
+			this.match(SysY2022EParser.RP);
+			this.state = 340;
+			this.block();
+			}
+		}
+		catch (re) {
+			if (re instanceof RecognitionException) {
+				localctx.exception = re;
+				this._errHandler.reportError(this, re);
+				this._errHandler.recover(this, re);
+			} else {
+				throw re;
+			}
+		}
+		finally {
+			this.exitRule();
+		}
+		return localctx;
+	}
+	// @RuleVersion(0)
+	public number_(): NumberContext {
+		let localctx: NumberContext = new NumberContext(this, this._ctx, this.state);
+		this.enterRule(localctx, 46, SysY2022EParser.RULE_number);
+		let _la: number;
+		try {
+			this.enterOuterAlt(localctx, 1);
+			{
+			this.state = 342;
+			_la = this._input.LA(1);
+			if(!(_la===41 || _la===42)) {
 			this._errHandler.recoverInline(this);
 			}
 			else {
@@ -1279,55 +1494,103 @@ export class SysY2022EParser extends Parser {
 		}
 		return localctx;
 	}
+
+	public unaryExp(): UnaryExpContext;
+	public unaryExp(_p: number): UnaryExpContext;
 	// @RuleVersion(0)
-	public unaryExp(): UnaryExpContext {
-		let localctx: UnaryExpContext = new UnaryExpContext(this, this._ctx, this.state);
-		this.enterRule(localctx, 42, SysY2022EParser.RULE_unaryExp);
+	public unaryExp(_p?: number): UnaryExpContext {
+		if (_p === undefined) {
+			_p = 0;
+		}
+
+		let _parentctx: ParserRuleContext = this._ctx;
+		let _parentState: number = this.state;
+		let localctx: UnaryExpContext = new UnaryExpContext(this, this._ctx, _parentState);
+		let _prevctx: UnaryExpContext = localctx;
+		let _startState: number = 48;
+		this.enterRecursionRule(localctx, 48, SysY2022EParser.RULE_unaryExp, _p);
 		let _la: number;
 		try {
-			this.state = 291;
+			let _alt: number;
+			this.enterOuterAlt(localctx, 1);
+			{
+			this.state = 355;
 			this._errHandler.sync(this);
-			switch ( this._interp.adaptivePredict(this._input, 27, this._ctx) ) {
+			switch ( this._interp.adaptivePredict(this._input, 32, this._ctx) ) {
 			case 1:
-				localctx = new Unary1Context(this, localctx);
-				this.enterOuterAlt(localctx, 1);
 				{
-				this.state = 281;
+				localctx = new Unary1Context(this, localctx);
+				this._ctx = localctx;
+				_prevctx = localctx;
+
+				this.state = 345;
 				this.primaryExp();
 				}
 				break;
 			case 2:
-				localctx = new Unary2Context(this, localctx);
-				this.enterOuterAlt(localctx, 2);
 				{
-				this.state = 282;
+				localctx = new Unary2Context(this, localctx);
+				this._ctx = localctx;
+				_prevctx = localctx;
+				this.state = 346;
 				this.match(SysY2022EParser.ID);
-				this.state = 283;
+				this.state = 347;
 				this.match(SysY2022EParser.LP);
-				this.state = 285;
+				this.state = 349;
 				this._errHandler.sync(this);
 				_la = this._input.LA(1);
-				if (((((_la - 12)) & ~0x1F) === 0 && ((1 << (_la - 12)) & 503327745) !== 0)) {
+				if ((((_la) & ~0x1F) === 0 && ((1 << _la) & 92282880) !== 0) || ((((_la - 38)) & ~0x1F) === 0 && ((1 << (_la - 38)) & 185) !== 0)) {
 					{
-					this.state = 284;
+					this.state = 348;
 					this.funcRParams();
 					}
 				}
 
-				this.state = 287;
+				this.state = 351;
 				this.match(SysY2022EParser.RP);
 				}
 				break;
 			case 3:
-				localctx = new Unary3Context(this, localctx);
-				this.enterOuterAlt(localctx, 3);
 				{
-				this.state = 288;
+				localctx = new Unary3Context(this, localctx);
+				this._ctx = localctx;
+				_prevctx = localctx;
+				this.state = 352;
 				this.unaryOp();
-				this.state = 289;
-				this.unaryExp();
+				this.state = 353;
+				this.unaryExp(2);
 				}
 				break;
+			}
+			this._ctx.stop = this._input.LT(-1);
+			this.state = 362;
+			this._errHandler.sync(this);
+			_alt = this._interp.adaptivePredict(this._input, 33, this._ctx);
+			while (_alt !== 2 && _alt !== ATN.INVALID_ALT_NUMBER) {
+				if (_alt === 1) {
+					if (this._parseListeners != null) {
+						this.triggerExitRuleEvent();
+					}
+					_prevctx = localctx;
+					{
+					{
+					localctx = new Unary4Context(this, new UnaryExpContext(this, _parentctx, _parentState));
+					this.pushNewRecursionContext(localctx, _startState, SysY2022EParser.RULE_unaryExp);
+					this.state = 357;
+					if (!(this.precpred(this._ctx, 1))) {
+						throw this.createFailedPredicateException("this.precpred(this._ctx, 1)");
+					}
+					this.state = 358;
+					this.match(SysY2022EParser.POINT);
+					this.state = 359;
+					this.match(SysY2022EParser.ID);
+					}
+					}
+				}
+				this.state = 364;
+				this._errHandler.sync(this);
+				_alt = this._interp.adaptivePredict(this._input, 33, this._ctx);
+			}
 			}
 		}
 		catch (re) {
@@ -1340,21 +1603,21 @@ export class SysY2022EParser extends Parser {
 			}
 		}
 		finally {
-			this.exitRule();
+			this.unrollRecursionContexts(_parentctx);
 		}
 		return localctx;
 	}
 	// @RuleVersion(0)
 	public unaryOp(): UnaryOpContext {
 		let localctx: UnaryOpContext = new UnaryOpContext(this, this._ctx, this.state);
-		this.enterRule(localctx, 44, SysY2022EParser.RULE_unaryOp);
+		this.enterRule(localctx, 50, SysY2022EParser.RULE_unaryOp);
 		let _la: number;
 		try {
 			this.enterOuterAlt(localctx, 1);
 			{
-			this.state = 293;
+			this.state = 365;
 			_la = this._input.LA(1);
-			if(!((((_la) & ~0x1F) === 0 && ((1 << _la) & 46137344) !== 0))) {
+			if(!((((_la) & ~0x1F) === 0 && ((1 << _la) & 92274688) !== 0))) {
 			this._errHandler.recoverInline(this);
 			}
 			else {
@@ -1380,26 +1643,26 @@ export class SysY2022EParser extends Parser {
 	// @RuleVersion(0)
 	public funcRParams(): FuncRParamsContext {
 		let localctx: FuncRParamsContext = new FuncRParamsContext(this, this._ctx, this.state);
-		this.enterRule(localctx, 46, SysY2022EParser.RULE_funcRParams);
+		this.enterRule(localctx, 52, SysY2022EParser.RULE_funcRParams);
 		let _la: number;
 		try {
 			this.enterOuterAlt(localctx, 1);
 			{
-			this.state = 295;
+			this.state = 367;
 			this.funcRParam();
-			this.state = 300;
+			this.state = 372;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
-			while (_la===18) {
+			while (_la===19) {
 				{
 				{
-				this.state = 296;
+				this.state = 368;
 				this.match(SysY2022EParser.COMMA);
-				this.state = 297;
+				this.state = 369;
 				this.funcRParam();
 				}
 				}
-				this.state = 302;
+				this.state = 374;
 				this._errHandler.sync(this);
 				_la = this._input.LA(1);
 			}
@@ -1422,30 +1685,31 @@ export class SysY2022EParser extends Parser {
 	// @RuleVersion(0)
 	public funcRParam(): FuncRParamContext {
 		let localctx: FuncRParamContext = new FuncRParamContext(this, this._ctx, this.state);
-		this.enterRule(localctx, 48, SysY2022EParser.RULE_funcRParam);
+		this.enterRule(localctx, 54, SysY2022EParser.RULE_funcRParam);
 		try {
-			this.state = 305;
+			this.state = 377;
 			this._errHandler.sync(this);
 			switch (this._input.LA(1)) {
-			case 12:
-			case 22:
+			case 13:
 			case 23:
-			case 25:
-			case 37:
+			case 24:
+			case 26:
 			case 38:
-			case 39:
+			case 41:
+			case 42:
+			case 43:
 				localctx = new ExpAsRParamContext(this, localctx);
 				this.enterOuterAlt(localctx, 1);
 				{
-				this.state = 303;
+				this.state = 375;
 				this.exp();
 				}
 				break;
-			case 40:
+			case 45:
 				localctx = new StringAsRParamContext(this, localctx);
 				this.enterOuterAlt(localctx, 2);
 				{
-				this.state = 304;
+				this.state = 376;
 				this.match(SysY2022EParser.STRING);
 				}
 				break;
@@ -1480,8 +1744,8 @@ export class SysY2022EParser extends Parser {
 		let _parentState: number = this.state;
 		let localctx: MulExpContext = new MulExpContext(this, this._ctx, _parentState);
 		let _prevctx: MulExpContext = localctx;
-		let _startState: number = 50;
-		this.enterRecursionRule(localctx, 50, SysY2022EParser.RULE_mulExp, _p);
+		let _startState: number = 56;
+		this.enterRecursionRule(localctx, 56, SysY2022EParser.RULE_mulExp, _p);
 		let _la: number;
 		try {
 			let _alt: number;
@@ -1492,13 +1756,13 @@ export class SysY2022EParser extends Parser {
 			this._ctx = localctx;
 			_prevctx = localctx;
 
-			this.state = 308;
-			this.unaryExp();
+			this.state = 380;
+			this.unaryExp(0);
 			}
 			this._ctx.stop = this._input.LT(-1);
-			this.state = 315;
+			this.state = 387;
 			this._errHandler.sync(this);
-			_alt = this._interp.adaptivePredict(this._input, 30, this._ctx);
+			_alt = this._interp.adaptivePredict(this._input, 36, this._ctx);
 			while (_alt !== 2 && _alt !== ATN.INVALID_ALT_NUMBER) {
 				if (_alt === 1) {
 					if (this._parseListeners != null) {
@@ -1509,27 +1773,27 @@ export class SysY2022EParser extends Parser {
 					{
 					localctx = new Mul2Context(this, new MulExpContext(this, _parentctx, _parentState));
 					this.pushNewRecursionContext(localctx, _startState, SysY2022EParser.RULE_mulExp);
-					this.state = 310;
+					this.state = 382;
 					if (!(this.precpred(this._ctx, 1))) {
 						throw this.createFailedPredicateException("this.precpred(this._ctx, 1)");
 					}
-					this.state = 311;
+					this.state = 383;
 					_la = this._input.LA(1);
-					if(!((((_la) & ~0x1F) === 0 && ((1 << _la) & 469762048) !== 0))) {
+					if(!((((_la) & ~0x1F) === 0 && ((1 << _la) & 939524096) !== 0))) {
 					this._errHandler.recoverInline(this);
 					}
 					else {
 						this._errHandler.reportMatch(this);
 					    this.consume();
 					}
-					this.state = 312;
-					this.unaryExp();
+					this.state = 384;
+					this.unaryExp(0);
 					}
 					}
 				}
-				this.state = 317;
+				this.state = 389;
 				this._errHandler.sync(this);
-				_alt = this._interp.adaptivePredict(this._input, 30, this._ctx);
+				_alt = this._interp.adaptivePredict(this._input, 36, this._ctx);
 			}
 			}
 		}
@@ -1560,8 +1824,8 @@ export class SysY2022EParser extends Parser {
 		let _parentState: number = this.state;
 		let localctx: AddExpContext = new AddExpContext(this, this._ctx, _parentState);
 		let _prevctx: AddExpContext = localctx;
-		let _startState: number = 52;
-		this.enterRecursionRule(localctx, 52, SysY2022EParser.RULE_addExp, _p);
+		let _startState: number = 58;
+		this.enterRecursionRule(localctx, 58, SysY2022EParser.RULE_addExp, _p);
 		let _la: number;
 		try {
 			let _alt: number;
@@ -1572,13 +1836,13 @@ export class SysY2022EParser extends Parser {
 			this._ctx = localctx;
 			_prevctx = localctx;
 
-			this.state = 319;
+			this.state = 391;
 			this.mulExp(0);
 			}
 			this._ctx.stop = this._input.LT(-1);
-			this.state = 326;
+			this.state = 398;
 			this._errHandler.sync(this);
-			_alt = this._interp.adaptivePredict(this._input, 31, this._ctx);
+			_alt = this._interp.adaptivePredict(this._input, 37, this._ctx);
 			while (_alt !== 2 && _alt !== ATN.INVALID_ALT_NUMBER) {
 				if (_alt === 1) {
 					if (this._parseListeners != null) {
@@ -1589,27 +1853,27 @@ export class SysY2022EParser extends Parser {
 					{
 					localctx = new Add2Context(this, new AddExpContext(this, _parentctx, _parentState));
 					this.pushNewRecursionContext(localctx, _startState, SysY2022EParser.RULE_addExp);
-					this.state = 321;
+					this.state = 393;
 					if (!(this.precpred(this._ctx, 1))) {
 						throw this.createFailedPredicateException("this.precpred(this._ctx, 1)");
 					}
-					this.state = 322;
+					this.state = 394;
 					_la = this._input.LA(1);
-					if(!(_la===22 || _la===25)) {
+					if(!(_la===23 || _la===26)) {
 					this._errHandler.recoverInline(this);
 					}
 					else {
 						this._errHandler.reportMatch(this);
 					    this.consume();
 					}
-					this.state = 323;
+					this.state = 395;
 					this.mulExp(0);
 					}
 					}
 				}
-				this.state = 328;
+				this.state = 400;
 				this._errHandler.sync(this);
-				_alt = this._interp.adaptivePredict(this._input, 31, this._ctx);
+				_alt = this._interp.adaptivePredict(this._input, 37, this._ctx);
 			}
 			}
 		}
@@ -1640,8 +1904,8 @@ export class SysY2022EParser extends Parser {
 		let _parentState: number = this.state;
 		let localctx: RelExpContext = new RelExpContext(this, this._ctx, _parentState);
 		let _prevctx: RelExpContext = localctx;
-		let _startState: number = 54;
-		this.enterRecursionRule(localctx, 54, SysY2022EParser.RULE_relExp, _p);
+		let _startState: number = 60;
+		this.enterRecursionRule(localctx, 60, SysY2022EParser.RULE_relExp, _p);
 		let _la: number;
 		try {
 			let _alt: number;
@@ -1652,13 +1916,13 @@ export class SysY2022EParser extends Parser {
 			this._ctx = localctx;
 			_prevctx = localctx;
 
-			this.state = 330;
+			this.state = 402;
 			this.addExp(0);
 			}
 			this._ctx.stop = this._input.LT(-1);
-			this.state = 337;
+			this.state = 409;
 			this._errHandler.sync(this);
-			_alt = this._interp.adaptivePredict(this._input, 32, this._ctx);
+			_alt = this._interp.adaptivePredict(this._input, 38, this._ctx);
 			while (_alt !== 2 && _alt !== ATN.INVALID_ALT_NUMBER) {
 				if (_alt === 1) {
 					if (this._parseListeners != null) {
@@ -1669,27 +1933,27 @@ export class SysY2022EParser extends Parser {
 					{
 					localctx = new Rel2Context(this, new RelExpContext(this, _parentctx, _parentState));
 					this.pushNewRecursionContext(localctx, _startState, SysY2022EParser.RULE_relExp);
-					this.state = 332;
+					this.state = 404;
 					if (!(this.precpred(this._ctx, 1))) {
 						throw this.createFailedPredicateException("this.precpred(this._ctx, 1)");
 					}
-					this.state = 333;
+					this.state = 405;
 					_la = this._input.LA(1);
-					if(!(((((_la - 33)) & ~0x1F) === 0 && ((1 << (_la - 33)) & 15) !== 0))) {
+					if(!(((((_la - 34)) & ~0x1F) === 0 && ((1 << (_la - 34)) & 15) !== 0))) {
 					this._errHandler.recoverInline(this);
 					}
 					else {
 						this._errHandler.reportMatch(this);
 					    this.consume();
 					}
-					this.state = 334;
+					this.state = 406;
 					this.addExp(0);
 					}
 					}
 				}
-				this.state = 339;
+				this.state = 411;
 				this._errHandler.sync(this);
-				_alt = this._interp.adaptivePredict(this._input, 32, this._ctx);
+				_alt = this._interp.adaptivePredict(this._input, 38, this._ctx);
 			}
 			}
 		}
@@ -1720,8 +1984,8 @@ export class SysY2022EParser extends Parser {
 		let _parentState: number = this.state;
 		let localctx: EqExpContext = new EqExpContext(this, this._ctx, _parentState);
 		let _prevctx: EqExpContext = localctx;
-		let _startState: number = 56;
-		this.enterRecursionRule(localctx, 56, SysY2022EParser.RULE_eqExp, _p);
+		let _startState: number = 62;
+		this.enterRecursionRule(localctx, 62, SysY2022EParser.RULE_eqExp, _p);
 		let _la: number;
 		try {
 			let _alt: number;
@@ -1732,13 +1996,13 @@ export class SysY2022EParser extends Parser {
 			this._ctx = localctx;
 			_prevctx = localctx;
 
-			this.state = 341;
+			this.state = 413;
 			this.relExp(0);
 			}
 			this._ctx.stop = this._input.LT(-1);
-			this.state = 348;
+			this.state = 420;
 			this._errHandler.sync(this);
-			_alt = this._interp.adaptivePredict(this._input, 33, this._ctx);
+			_alt = this._interp.adaptivePredict(this._input, 39, this._ctx);
 			while (_alt !== 2 && _alt !== ATN.INVALID_ALT_NUMBER) {
 				if (_alt === 1) {
 					if (this._parseListeners != null) {
@@ -1749,27 +2013,27 @@ export class SysY2022EParser extends Parser {
 					{
 					localctx = new Eq2Context(this, new EqExpContext(this, _parentctx, _parentState));
 					this.pushNewRecursionContext(localctx, _startState, SysY2022EParser.RULE_eqExp);
-					this.state = 343;
+					this.state = 415;
 					if (!(this.precpred(this._ctx, 1))) {
 						throw this.createFailedPredicateException("this.precpred(this._ctx, 1)");
 					}
-					this.state = 344;
+					this.state = 416;
 					_la = this._input.LA(1);
-					if(!(_la===31 || _la===32)) {
+					if(!(_la===32 || _la===33)) {
 					this._errHandler.recoverInline(this);
 					}
 					else {
 						this._errHandler.reportMatch(this);
 					    this.consume();
 					}
-					this.state = 345;
+					this.state = 417;
 					this.relExp(0);
 					}
 					}
 				}
-				this.state = 350;
+				this.state = 422;
 				this._errHandler.sync(this);
-				_alt = this._interp.adaptivePredict(this._input, 33, this._ctx);
+				_alt = this._interp.adaptivePredict(this._input, 39, this._ctx);
 			}
 			}
 		}
@@ -1800,8 +2064,8 @@ export class SysY2022EParser extends Parser {
 		let _parentState: number = this.state;
 		let localctx: LAndExpContext = new LAndExpContext(this, this._ctx, _parentState);
 		let _prevctx: LAndExpContext = localctx;
-		let _startState: number = 58;
-		this.enterRecursionRule(localctx, 58, SysY2022EParser.RULE_lAndExp, _p);
+		let _startState: number = 64;
+		this.enterRecursionRule(localctx, 64, SysY2022EParser.RULE_lAndExp, _p);
 		try {
 			let _alt: number;
 			this.enterOuterAlt(localctx, 1);
@@ -1811,13 +2075,13 @@ export class SysY2022EParser extends Parser {
 			this._ctx = localctx;
 			_prevctx = localctx;
 
-			this.state = 352;
+			this.state = 424;
 			this.eqExp(0);
 			}
 			this._ctx.stop = this._input.LT(-1);
-			this.state = 359;
+			this.state = 431;
 			this._errHandler.sync(this);
-			_alt = this._interp.adaptivePredict(this._input, 34, this._ctx);
+			_alt = this._interp.adaptivePredict(this._input, 40, this._ctx);
 			while (_alt !== 2 && _alt !== ATN.INVALID_ALT_NUMBER) {
 				if (_alt === 1) {
 					if (this._parseListeners != null) {
@@ -1828,20 +2092,20 @@ export class SysY2022EParser extends Parser {
 					{
 					localctx = new LAnd2Context(this, new LAndExpContext(this, _parentctx, _parentState));
 					this.pushNewRecursionContext(localctx, _startState, SysY2022EParser.RULE_lAndExp);
-					this.state = 354;
+					this.state = 426;
 					if (!(this.precpred(this._ctx, 1))) {
 						throw this.createFailedPredicateException("this.precpred(this._ctx, 1)");
 					}
-					this.state = 355;
+					this.state = 427;
 					this.match(SysY2022EParser.AND);
-					this.state = 356;
+					this.state = 428;
 					this.eqExp(0);
 					}
 					}
 				}
-				this.state = 361;
+				this.state = 433;
 				this._errHandler.sync(this);
-				_alt = this._interp.adaptivePredict(this._input, 34, this._ctx);
+				_alt = this._interp.adaptivePredict(this._input, 40, this._ctx);
 			}
 			}
 		}
@@ -1872,8 +2136,8 @@ export class SysY2022EParser extends Parser {
 		let _parentState: number = this.state;
 		let localctx: LOrExpContext = new LOrExpContext(this, this._ctx, _parentState);
 		let _prevctx: LOrExpContext = localctx;
-		let _startState: number = 60;
-		this.enterRecursionRule(localctx, 60, SysY2022EParser.RULE_lOrExp, _p);
+		let _startState: number = 66;
+		this.enterRecursionRule(localctx, 66, SysY2022EParser.RULE_lOrExp, _p);
 		try {
 			let _alt: number;
 			this.enterOuterAlt(localctx, 1);
@@ -1883,13 +2147,13 @@ export class SysY2022EParser extends Parser {
 			this._ctx = localctx;
 			_prevctx = localctx;
 
-			this.state = 363;
+			this.state = 435;
 			this.lAndExp(0);
 			}
 			this._ctx.stop = this._input.LT(-1);
-			this.state = 370;
+			this.state = 442;
 			this._errHandler.sync(this);
-			_alt = this._interp.adaptivePredict(this._input, 35, this._ctx);
+			_alt = this._interp.adaptivePredict(this._input, 41, this._ctx);
 			while (_alt !== 2 && _alt !== ATN.INVALID_ALT_NUMBER) {
 				if (_alt === 1) {
 					if (this._parseListeners != null) {
@@ -1900,20 +2164,20 @@ export class SysY2022EParser extends Parser {
 					{
 					localctx = new LOr2Context(this, new LOrExpContext(this, _parentctx, _parentState));
 					this.pushNewRecursionContext(localctx, _startState, SysY2022EParser.RULE_lOrExp);
-					this.state = 365;
+					this.state = 437;
 					if (!(this.precpred(this._ctx, 1))) {
 						throw this.createFailedPredicateException("this.precpred(this._ctx, 1)");
 					}
-					this.state = 366;
+					this.state = 438;
 					this.match(SysY2022EParser.OR);
-					this.state = 367;
+					this.state = 439;
 					this.lAndExp(0);
 					}
 					}
 				}
-				this.state = 372;
+				this.state = 444;
 				this._errHandler.sync(this);
-				_alt = this._interp.adaptivePredict(this._input, 35, this._ctx);
+				_alt = this._interp.adaptivePredict(this._input, 41, this._ctx);
 			}
 			}
 		}
@@ -1934,11 +2198,11 @@ export class SysY2022EParser extends Parser {
 	// @RuleVersion(0)
 	public constExp(): ConstExpContext {
 		let localctx: ConstExpContext = new ConstExpContext(this, this._ctx, this.state);
-		this.enterRule(localctx, 62, SysY2022EParser.RULE_constExp);
+		this.enterRule(localctx, 68, SysY2022EParser.RULE_constExp);
 		try {
 			this.enterOuterAlt(localctx, 1);
 			{
-			this.state = 373;
+			this.state = 445;
 			this.addExp(0);
 			}
 		}
@@ -1959,185 +2223,218 @@ export class SysY2022EParser extends Parser {
 
 	public sempred(localctx: RuleContext, ruleIndex: number, predIndex: number): boolean {
 		switch (ruleIndex) {
-		case 25:
-			return this.mulExp_sempred(localctx as MulExpContext, predIndex);
-		case 26:
-			return this.addExp_sempred(localctx as AddExpContext, predIndex);
-		case 27:
-			return this.relExp_sempred(localctx as RelExpContext, predIndex);
+		case 24:
+			return this.unaryExp_sempred(localctx as UnaryExpContext, predIndex);
 		case 28:
-			return this.eqExp_sempred(localctx as EqExpContext, predIndex);
+			return this.mulExp_sempred(localctx as MulExpContext, predIndex);
 		case 29:
-			return this.lAndExp_sempred(localctx as LAndExpContext, predIndex);
+			return this.addExp_sempred(localctx as AddExpContext, predIndex);
 		case 30:
+			return this.relExp_sempred(localctx as RelExpContext, predIndex);
+		case 31:
+			return this.eqExp_sempred(localctx as EqExpContext, predIndex);
+		case 32:
+			return this.lAndExp_sempred(localctx as LAndExpContext, predIndex);
+		case 33:
 			return this.lOrExp_sempred(localctx as LOrExpContext, predIndex);
 		}
 		return true;
 	}
-	private mulExp_sempred(localctx: MulExpContext, predIndex: number): boolean {
+	private unaryExp_sempred(localctx: UnaryExpContext, predIndex: number): boolean {
 		switch (predIndex) {
 		case 0:
 			return this.precpred(this._ctx, 1);
 		}
 		return true;
 	}
-	private addExp_sempred(localctx: AddExpContext, predIndex: number): boolean {
+	private mulExp_sempred(localctx: MulExpContext, predIndex: number): boolean {
 		switch (predIndex) {
 		case 1:
 			return this.precpred(this._ctx, 1);
 		}
 		return true;
 	}
-	private relExp_sempred(localctx: RelExpContext, predIndex: number): boolean {
+	private addExp_sempred(localctx: AddExpContext, predIndex: number): boolean {
 		switch (predIndex) {
 		case 2:
 			return this.precpred(this._ctx, 1);
 		}
 		return true;
 	}
-	private eqExp_sempred(localctx: EqExpContext, predIndex: number): boolean {
+	private relExp_sempred(localctx: RelExpContext, predIndex: number): boolean {
 		switch (predIndex) {
 		case 3:
 			return this.precpred(this._ctx, 1);
 		}
 		return true;
 	}
-	private lAndExp_sempred(localctx: LAndExpContext, predIndex: number): boolean {
+	private eqExp_sempred(localctx: EqExpContext, predIndex: number): boolean {
 		switch (predIndex) {
 		case 4:
 			return this.precpred(this._ctx, 1);
 		}
 		return true;
 	}
-	private lOrExp_sempred(localctx: LOrExpContext, predIndex: number): boolean {
+	private lAndExp_sempred(localctx: LAndExpContext, predIndex: number): boolean {
 		switch (predIndex) {
 		case 5:
 			return this.precpred(this._ctx, 1);
 		}
 		return true;
 	}
+	private lOrExp_sempred(localctx: LOrExpContext, predIndex: number): boolean {
+		switch (predIndex) {
+		case 6:
+			return this.precpred(this._ctx, 1);
+		}
+		return true;
+	}
 
-	public static readonly _serializedATN: number[] = [4,1,43,376,2,0,7,0,2,
+	public static readonly _serializedATN: number[] = [4,1,48,448,2,0,7,0,2,
 	1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,6,2,7,7,7,2,8,7,8,2,9,7,9,2,
 	10,7,10,2,11,7,11,2,12,7,12,2,13,7,13,2,14,7,14,2,15,7,15,2,16,7,16,2,17,
 	7,17,2,18,7,18,2,19,7,19,2,20,7,20,2,21,7,21,2,22,7,22,2,23,7,23,2,24,7,
 	24,2,25,7,25,2,26,7,26,2,27,7,27,2,28,7,28,2,29,7,29,2,30,7,30,2,31,7,31,
-	1,0,1,0,5,0,67,8,0,10,0,12,0,70,9,0,1,0,1,0,1,1,1,1,3,1,76,8,1,1,2,1,2,
-	1,2,1,2,1,2,5,2,83,8,2,10,2,12,2,86,9,2,1,2,1,2,1,3,1,3,1,4,1,4,1,4,1,4,
-	1,4,5,4,97,8,4,10,4,12,4,100,9,4,1,4,1,4,1,4,1,5,1,5,1,5,1,5,1,5,5,5,110,
-	8,5,10,5,12,5,113,9,5,3,5,115,8,5,1,5,3,5,118,8,5,1,6,1,6,1,6,1,6,5,6,124,
-	8,6,10,6,12,6,127,9,6,1,6,1,6,1,7,1,7,1,7,1,7,1,7,5,7,136,8,7,10,7,12,7,
-	139,9,7,1,7,1,7,1,7,1,7,1,7,5,7,146,8,7,10,7,12,7,149,9,7,1,7,1,7,3,7,153,
-	8,7,1,8,1,8,1,8,1,8,1,8,5,8,160,8,8,10,8,12,8,163,9,8,3,8,165,8,8,1,8,3,
-	8,168,8,8,1,9,1,9,1,9,1,9,3,9,174,8,9,1,9,1,9,1,9,1,10,1,10,1,11,1,11,1,
-	11,5,11,184,8,11,10,11,12,11,187,9,11,1,12,1,12,1,12,1,12,1,12,1,12,1,12,
-	1,12,5,12,197,8,12,10,12,12,12,200,9,12,3,12,202,8,12,1,13,1,13,5,13,206,
-	8,13,10,13,12,13,209,9,13,1,13,1,13,1,14,1,14,3,14,215,8,14,1,15,1,15,1,
-	15,1,15,1,15,1,15,3,15,223,8,15,1,15,1,15,1,15,1,15,1,15,1,15,1,15,1,15,
-	1,15,1,15,1,15,1,15,1,15,1,15,1,15,1,15,1,15,1,15,1,15,1,15,1,15,1,15,1,
-	15,1,15,1,15,1,15,1,15,1,15,3,15,253,8,15,1,15,3,15,256,8,15,1,16,1,16,
-	1,17,1,17,1,18,1,18,1,18,1,18,1,18,5,18,267,8,18,10,18,12,18,270,9,18,1,
-	19,1,19,1,19,1,19,1,19,1,19,3,19,278,8,19,1,20,1,20,1,21,1,21,1,21,1,21,
-	3,21,286,8,21,1,21,1,21,1,21,1,21,3,21,292,8,21,1,22,1,22,1,23,1,23,1,23,
-	5,23,299,8,23,10,23,12,23,302,9,23,1,24,1,24,3,24,306,8,24,1,25,1,25,1,
-	25,1,25,1,25,1,25,5,25,314,8,25,10,25,12,25,317,9,25,1,26,1,26,1,26,1,26,
-	1,26,1,26,5,26,325,8,26,10,26,12,26,328,9,26,1,27,1,27,1,27,1,27,1,27,1,
-	27,5,27,336,8,27,10,27,12,27,339,9,27,1,28,1,28,1,28,1,28,1,28,1,28,5,28,
-	347,8,28,10,28,12,28,350,9,28,1,29,1,29,1,29,1,29,1,29,1,29,5,29,358,8,
-	29,10,29,12,29,361,9,29,1,30,1,30,1,30,1,30,1,30,1,30,5,30,369,8,30,10,
-	30,12,30,372,9,30,1,31,1,31,1,31,0,6,50,52,54,56,58,60,32,0,2,4,6,8,10,
-	12,14,16,18,20,22,24,26,28,30,32,34,36,38,40,42,44,46,48,50,52,54,56,58,
-	60,62,0,8,1,0,1,2,1,0,1,3,1,0,37,38,2,0,22,23,25,25,1,0,26,28,2,0,22,22,
-	25,25,1,0,33,36,1,0,31,32,388,0,68,1,0,0,0,2,75,1,0,0,0,4,77,1,0,0,0,6,
-	89,1,0,0,0,8,91,1,0,0,0,10,117,1,0,0,0,12,119,1,0,0,0,14,152,1,0,0,0,16,
-	167,1,0,0,0,18,169,1,0,0,0,20,178,1,0,0,0,22,180,1,0,0,0,24,188,1,0,0,0,
-	26,203,1,0,0,0,28,214,1,0,0,0,30,255,1,0,0,0,32,257,1,0,0,0,34,259,1,0,
-	0,0,36,261,1,0,0,0,38,277,1,0,0,0,40,279,1,0,0,0,42,291,1,0,0,0,44,293,
-	1,0,0,0,46,295,1,0,0,0,48,305,1,0,0,0,50,307,1,0,0,0,52,318,1,0,0,0,54,
-	329,1,0,0,0,56,340,1,0,0,0,58,351,1,0,0,0,60,362,1,0,0,0,62,373,1,0,0,0,
-	64,67,3,2,1,0,65,67,3,18,9,0,66,64,1,0,0,0,66,65,1,0,0,0,67,70,1,0,0,0,
-	68,66,1,0,0,0,68,69,1,0,0,0,69,71,1,0,0,0,70,68,1,0,0,0,71,72,5,0,0,1,72,
-	1,1,0,0,0,73,76,3,4,2,0,74,76,3,12,6,0,75,73,1,0,0,0,75,74,1,0,0,0,76,3,
-	1,0,0,0,77,78,5,4,0,0,78,79,3,6,3,0,79,84,3,8,4,0,80,81,5,18,0,0,81,83,
-	3,8,4,0,82,80,1,0,0,0,83,86,1,0,0,0,84,82,1,0,0,0,84,85,1,0,0,0,85,87,1,
-	0,0,0,86,84,1,0,0,0,87,88,5,19,0,0,88,5,1,0,0,0,89,90,7,0,0,0,90,7,1,0,
-	0,0,91,98,5,39,0,0,92,93,5,14,0,0,93,94,3,62,31,0,94,95,5,15,0,0,95,97,
-	1,0,0,0,96,92,1,0,0,0,97,100,1,0,0,0,98,96,1,0,0,0,98,99,1,0,0,0,99,101,
-	1,0,0,0,100,98,1,0,0,0,101,102,5,24,0,0,102,103,3,10,5,0,103,9,1,0,0,0,
-	104,118,3,62,31,0,105,114,5,16,0,0,106,111,3,10,5,0,107,108,5,18,0,0,108,
-	110,3,10,5,0,109,107,1,0,0,0,110,113,1,0,0,0,111,109,1,0,0,0,111,112,1,
-	0,0,0,112,115,1,0,0,0,113,111,1,0,0,0,114,106,1,0,0,0,114,115,1,0,0,0,115,
-	116,1,0,0,0,116,118,5,17,0,0,117,104,1,0,0,0,117,105,1,0,0,0,118,11,1,0,
-	0,0,119,120,3,6,3,0,120,125,3,14,7,0,121,122,5,18,0,0,122,124,3,14,7,0,
-	123,121,1,0,0,0,124,127,1,0,0,0,125,123,1,0,0,0,125,126,1,0,0,0,126,128,
-	1,0,0,0,127,125,1,0,0,0,128,129,5,19,0,0,129,13,1,0,0,0,130,137,5,39,0,
-	0,131,132,5,14,0,0,132,133,3,62,31,0,133,134,5,15,0,0,134,136,1,0,0,0,135,
-	131,1,0,0,0,136,139,1,0,0,0,137,135,1,0,0,0,137,138,1,0,0,0,138,153,1,0,
-	0,0,139,137,1,0,0,0,140,147,5,39,0,0,141,142,5,14,0,0,142,143,3,62,31,0,
-	143,144,5,15,0,0,144,146,1,0,0,0,145,141,1,0,0,0,146,149,1,0,0,0,147,145,
-	1,0,0,0,147,148,1,0,0,0,148,150,1,0,0,0,149,147,1,0,0,0,150,151,5,24,0,
-	0,151,153,3,16,8,0,152,130,1,0,0,0,152,140,1,0,0,0,153,15,1,0,0,0,154,168,
-	3,32,16,0,155,164,5,16,0,0,156,161,3,16,8,0,157,158,5,18,0,0,158,160,3,
-	16,8,0,159,157,1,0,0,0,160,163,1,0,0,0,161,159,1,0,0,0,161,162,1,0,0,0,
-	162,165,1,0,0,0,163,161,1,0,0,0,164,156,1,0,0,0,164,165,1,0,0,0,165,166,
-	1,0,0,0,166,168,5,17,0,0,167,154,1,0,0,0,167,155,1,0,0,0,168,17,1,0,0,0,
-	169,170,3,20,10,0,170,171,5,39,0,0,171,173,5,12,0,0,172,174,3,22,11,0,173,
-	172,1,0,0,0,173,174,1,0,0,0,174,175,1,0,0,0,175,176,5,13,0,0,176,177,3,
-	26,13,0,177,19,1,0,0,0,178,179,7,1,0,0,179,21,1,0,0,0,180,185,3,24,12,0,
-	181,182,5,18,0,0,182,184,3,24,12,0,183,181,1,0,0,0,184,187,1,0,0,0,185,
-	183,1,0,0,0,185,186,1,0,0,0,186,23,1,0,0,0,187,185,1,0,0,0,188,189,3,6,
-	3,0,189,201,5,39,0,0,190,191,5,14,0,0,191,198,5,15,0,0,192,193,5,14,0,0,
-	193,194,3,62,31,0,194,195,5,15,0,0,195,197,1,0,0,0,196,192,1,0,0,0,197,
-	200,1,0,0,0,198,196,1,0,0,0,198,199,1,0,0,0,199,202,1,0,0,0,200,198,1,0,
-	0,0,201,190,1,0,0,0,201,202,1,0,0,0,202,25,1,0,0,0,203,207,5,16,0,0,204,
-	206,3,28,14,0,205,204,1,0,0,0,206,209,1,0,0,0,207,205,1,0,0,0,207,208,1,
-	0,0,0,208,210,1,0,0,0,209,207,1,0,0,0,210,211,5,17,0,0,211,27,1,0,0,0,212,
-	215,3,2,1,0,213,215,3,30,15,0,214,212,1,0,0,0,214,213,1,0,0,0,215,29,1,
-	0,0,0,216,217,3,36,18,0,217,218,5,24,0,0,218,219,3,32,16,0,219,220,5,19,
-	0,0,220,256,1,0,0,0,221,223,3,32,16,0,222,221,1,0,0,0,222,223,1,0,0,0,223,
-	224,1,0,0,0,224,256,5,19,0,0,225,256,3,26,13,0,226,227,5,6,0,0,227,228,
-	5,12,0,0,228,229,3,34,17,0,229,230,5,13,0,0,230,231,3,30,15,0,231,256,1,
-	0,0,0,232,233,5,6,0,0,233,234,5,12,0,0,234,235,3,34,17,0,235,236,5,13,0,
-	0,236,237,3,30,15,0,237,238,5,7,0,0,238,239,3,30,15,0,239,256,1,0,0,0,240,
-	241,5,8,0,0,241,242,5,12,0,0,242,243,3,34,17,0,243,244,5,13,0,0,244,245,
-	3,30,15,0,245,256,1,0,0,0,246,247,5,9,0,0,247,256,5,19,0,0,248,249,5,10,
-	0,0,249,256,5,19,0,0,250,252,5,5,0,0,251,253,3,32,16,0,252,251,1,0,0,0,
-	252,253,1,0,0,0,253,254,1,0,0,0,254,256,5,19,0,0,255,216,1,0,0,0,255,222,
-	1,0,0,0,255,225,1,0,0,0,255,226,1,0,0,0,255,232,1,0,0,0,255,240,1,0,0,0,
-	255,246,1,0,0,0,255,248,1,0,0,0,255,250,1,0,0,0,256,31,1,0,0,0,257,258,
-	3,52,26,0,258,33,1,0,0,0,259,260,3,60,30,0,260,35,1,0,0,0,261,268,5,39,
-	0,0,262,263,5,14,0,0,263,264,3,32,16,0,264,265,5,15,0,0,265,267,1,0,0,0,
-	266,262,1,0,0,0,267,270,1,0,0,0,268,266,1,0,0,0,268,269,1,0,0,0,269,37,
-	1,0,0,0,270,268,1,0,0,0,271,272,5,12,0,0,272,273,3,32,16,0,273,274,5,13,
-	0,0,274,278,1,0,0,0,275,278,3,36,18,0,276,278,3,40,20,0,277,271,1,0,0,0,
-	277,275,1,0,0,0,277,276,1,0,0,0,278,39,1,0,0,0,279,280,7,2,0,0,280,41,1,
-	0,0,0,281,292,3,38,19,0,282,283,5,39,0,0,283,285,5,12,0,0,284,286,3,46,
-	23,0,285,284,1,0,0,0,285,286,1,0,0,0,286,287,1,0,0,0,287,292,5,13,0,0,288,
-	289,3,44,22,0,289,290,3,42,21,0,290,292,1,0,0,0,291,281,1,0,0,0,291,282,
-	1,0,0,0,291,288,1,0,0,0,292,43,1,0,0,0,293,294,7,3,0,0,294,45,1,0,0,0,295,
-	300,3,48,24,0,296,297,5,18,0,0,297,299,3,48,24,0,298,296,1,0,0,0,299,302,
-	1,0,0,0,300,298,1,0,0,0,300,301,1,0,0,0,301,47,1,0,0,0,302,300,1,0,0,0,
-	303,306,3,32,16,0,304,306,5,40,0,0,305,303,1,0,0,0,305,304,1,0,0,0,306,
-	49,1,0,0,0,307,308,6,25,-1,0,308,309,3,42,21,0,309,315,1,0,0,0,310,311,
-	10,1,0,0,311,312,7,4,0,0,312,314,3,42,21,0,313,310,1,0,0,0,314,317,1,0,
-	0,0,315,313,1,0,0,0,315,316,1,0,0,0,316,51,1,0,0,0,317,315,1,0,0,0,318,
-	319,6,26,-1,0,319,320,3,50,25,0,320,326,1,0,0,0,321,322,10,1,0,0,322,323,
-	7,5,0,0,323,325,3,50,25,0,324,321,1,0,0,0,325,328,1,0,0,0,326,324,1,0,0,
-	0,326,327,1,0,0,0,327,53,1,0,0,0,328,326,1,0,0,0,329,330,6,27,-1,0,330,
-	331,3,52,26,0,331,337,1,0,0,0,332,333,10,1,0,0,333,334,7,6,0,0,334,336,
-	3,52,26,0,335,332,1,0,0,0,336,339,1,0,0,0,337,335,1,0,0,0,337,338,1,0,0,
-	0,338,55,1,0,0,0,339,337,1,0,0,0,340,341,6,28,-1,0,341,342,3,54,27,0,342,
-	348,1,0,0,0,343,344,10,1,0,0,344,345,7,7,0,0,345,347,3,54,27,0,346,343,
-	1,0,0,0,347,350,1,0,0,0,348,346,1,0,0,0,348,349,1,0,0,0,349,57,1,0,0,0,
-	350,348,1,0,0,0,351,352,6,29,-1,0,352,353,3,56,28,0,353,359,1,0,0,0,354,
-	355,10,1,0,0,355,356,5,29,0,0,356,358,3,56,28,0,357,354,1,0,0,0,358,361,
-	1,0,0,0,359,357,1,0,0,0,359,360,1,0,0,0,360,59,1,0,0,0,361,359,1,0,0,0,
-	362,363,6,30,-1,0,363,364,3,58,29,0,364,370,1,0,0,0,365,366,10,1,0,0,366,
-	367,5,30,0,0,367,369,3,58,29,0,368,365,1,0,0,0,369,372,1,0,0,0,370,368,
-	1,0,0,0,370,371,1,0,0,0,371,61,1,0,0,0,372,370,1,0,0,0,373,374,3,52,26,
-	0,374,63,1,0,0,0,36,66,68,75,84,98,111,114,117,125,137,147,152,161,164,
-	167,173,185,198,201,207,214,222,252,255,268,277,285,291,300,305,315,326,
-	337,348,359,370];
+	2,32,7,32,2,33,7,33,2,34,7,34,1,0,1,0,5,0,73,8,0,10,0,12,0,76,9,0,1,0,1,
+	0,1,1,1,1,1,1,3,1,83,8,1,1,2,1,2,1,2,1,2,1,2,5,2,90,8,2,10,2,12,2,93,9,
+	2,1,2,1,2,1,3,1,3,1,3,1,3,3,3,101,8,3,1,4,1,4,1,4,1,4,1,4,5,4,108,8,4,10,
+	4,12,4,111,9,4,1,4,1,4,1,4,1,5,1,5,1,5,1,5,1,5,5,5,121,8,5,10,5,12,5,124,
+	9,5,3,5,126,8,5,1,5,3,5,129,8,5,1,6,1,6,1,6,1,6,1,6,1,6,1,6,1,6,1,6,5,6,
+	140,8,6,10,6,12,6,143,9,6,1,6,1,6,1,6,1,7,1,7,1,7,1,7,5,7,152,8,7,10,7,
+	12,7,155,9,7,1,7,1,7,1,7,1,7,1,8,1,8,1,8,1,8,5,8,165,8,8,10,8,12,8,168,
+	9,8,1,8,1,8,1,9,1,9,1,9,1,9,1,9,5,9,177,8,9,10,9,12,9,180,9,9,1,9,1,9,1,
+	9,1,9,1,9,5,9,187,8,9,10,9,12,9,190,9,9,1,9,1,9,3,9,194,8,9,1,10,1,10,1,
+	10,1,10,1,10,5,10,201,8,10,10,10,12,10,204,9,10,3,10,206,8,10,1,10,3,10,
+	209,8,10,1,11,1,11,1,11,1,11,3,11,215,8,11,1,11,1,11,1,11,1,12,1,12,1,13,
+	1,13,1,13,5,13,225,8,13,10,13,12,13,228,9,13,1,14,1,14,1,14,1,14,1,14,1,
+	14,1,14,1,14,5,14,238,8,14,10,14,12,14,241,9,14,3,14,243,8,14,1,15,1,15,
+	5,15,247,8,15,10,15,12,15,250,9,15,1,15,1,15,1,16,1,16,3,16,256,8,16,1,
+	17,1,17,1,17,1,17,1,17,1,17,3,17,264,8,17,1,17,1,17,1,17,1,17,1,17,1,17,
+	1,17,1,17,1,17,1,17,1,17,1,17,1,17,1,17,1,17,1,17,1,17,1,17,1,17,1,17,1,
+	17,1,17,1,17,1,17,1,17,1,17,1,17,1,17,3,17,294,8,17,1,17,3,17,297,8,17,
+	1,18,1,18,1,19,1,19,1,20,1,20,1,20,1,20,1,20,5,20,308,8,20,10,20,12,20,
+	311,9,20,1,20,1,20,1,20,3,20,316,8,20,1,21,1,21,1,21,1,21,1,21,1,21,1,21,
+	3,21,325,8,21,1,22,1,22,1,22,1,22,1,22,1,22,1,22,1,22,5,22,335,8,22,10,
+	22,12,22,338,9,22,1,22,1,22,1,22,1,23,1,23,1,24,1,24,1,24,1,24,1,24,3,24,
+	350,8,24,1,24,1,24,1,24,1,24,3,24,356,8,24,1,24,1,24,1,24,5,24,361,8,24,
+	10,24,12,24,364,9,24,1,25,1,25,1,26,1,26,1,26,5,26,371,8,26,10,26,12,26,
+	374,9,26,1,27,1,27,3,27,378,8,27,1,28,1,28,1,28,1,28,1,28,1,28,5,28,386,
+	8,28,10,28,12,28,389,9,28,1,29,1,29,1,29,1,29,1,29,1,29,5,29,397,8,29,10,
+	29,12,29,400,9,29,1,30,1,30,1,30,1,30,1,30,1,30,5,30,408,8,30,10,30,12,
+	30,411,9,30,1,31,1,31,1,31,1,31,1,31,1,31,5,31,419,8,31,10,31,12,31,422,
+	9,31,1,32,1,32,1,32,1,32,1,32,1,32,5,32,430,8,32,10,32,12,32,433,9,32,1,
+	33,1,33,1,33,1,33,1,33,1,33,5,33,441,8,33,10,33,12,33,444,9,33,1,34,1,34,
+	1,34,0,7,48,56,58,60,62,64,66,35,0,2,4,6,8,10,12,14,16,18,20,22,24,26,28,
+	30,32,34,36,38,40,42,44,46,48,50,52,54,56,58,60,62,64,66,68,0,7,1,0,1,3,
+	1,0,41,42,2,0,23,24,26,26,1,0,27,29,2,0,23,23,26,26,1,0,34,37,1,0,32,33,
+	467,0,74,1,0,0,0,2,82,1,0,0,0,4,84,1,0,0,0,6,100,1,0,0,0,8,102,1,0,0,0,
+	10,128,1,0,0,0,12,130,1,0,0,0,14,147,1,0,0,0,16,160,1,0,0,0,18,193,1,0,
+	0,0,20,208,1,0,0,0,22,210,1,0,0,0,24,219,1,0,0,0,26,221,1,0,0,0,28,229,
+	1,0,0,0,30,244,1,0,0,0,32,255,1,0,0,0,34,296,1,0,0,0,36,298,1,0,0,0,38,
+	300,1,0,0,0,40,315,1,0,0,0,42,324,1,0,0,0,44,326,1,0,0,0,46,342,1,0,0,0,
+	48,355,1,0,0,0,50,365,1,0,0,0,52,367,1,0,0,0,54,377,1,0,0,0,56,379,1,0,
+	0,0,58,390,1,0,0,0,60,401,1,0,0,0,62,412,1,0,0,0,64,423,1,0,0,0,66,434,
+	1,0,0,0,68,445,1,0,0,0,70,73,3,2,1,0,71,73,3,22,11,0,72,70,1,0,0,0,72,71,
+	1,0,0,0,73,76,1,0,0,0,74,72,1,0,0,0,74,75,1,0,0,0,75,77,1,0,0,0,76,74,1,
+	0,0,0,77,78,5,0,0,1,78,1,1,0,0,0,79,83,3,4,2,0,80,83,3,16,8,0,81,83,3,12,
+	6,0,82,79,1,0,0,0,82,80,1,0,0,0,82,81,1,0,0,0,83,3,1,0,0,0,84,85,5,4,0,
+	0,85,86,3,6,3,0,86,91,3,8,4,0,87,88,5,19,0,0,88,90,3,8,4,0,89,87,1,0,0,
+	0,90,93,1,0,0,0,91,89,1,0,0,0,91,92,1,0,0,0,92,94,1,0,0,0,93,91,1,0,0,0,
+	94,95,5,20,0,0,95,5,1,0,0,0,96,101,5,1,0,0,97,101,5,2,0,0,98,101,5,44,0,
+	0,99,101,3,14,7,0,100,96,1,0,0,0,100,97,1,0,0,0,100,98,1,0,0,0,100,99,1,
+	0,0,0,101,7,1,0,0,0,102,109,5,43,0,0,103,104,5,15,0,0,104,105,3,68,34,0,
+	105,106,5,16,0,0,106,108,1,0,0,0,107,103,1,0,0,0,108,111,1,0,0,0,109,107,
+	1,0,0,0,109,110,1,0,0,0,110,112,1,0,0,0,111,109,1,0,0,0,112,113,5,25,0,
+	0,113,114,3,10,5,0,114,9,1,0,0,0,115,129,3,68,34,0,116,125,5,17,0,0,117,
+	122,3,10,5,0,118,119,5,19,0,0,119,121,3,10,5,0,120,118,1,0,0,0,121,124,
+	1,0,0,0,122,120,1,0,0,0,122,123,1,0,0,0,123,126,1,0,0,0,124,122,1,0,0,0,
+	125,117,1,0,0,0,125,126,1,0,0,0,126,127,1,0,0,0,127,129,5,18,0,0,128,115,
+	1,0,0,0,128,116,1,0,0,0,129,11,1,0,0,0,130,131,5,12,0,0,131,132,5,44,0,
+	0,132,133,5,17,0,0,133,134,3,6,3,0,134,141,3,18,9,0,135,136,5,19,0,0,136,
+	137,3,6,3,0,137,138,3,18,9,0,138,140,1,0,0,0,139,135,1,0,0,0,140,143,1,
+	0,0,0,141,139,1,0,0,0,141,142,1,0,0,0,142,144,1,0,0,0,143,141,1,0,0,0,144,
+	145,5,18,0,0,145,146,5,20,0,0,146,13,1,0,0,0,147,148,5,13,0,0,148,153,3,
+	6,3,0,149,150,5,19,0,0,150,152,3,6,3,0,151,149,1,0,0,0,152,155,1,0,0,0,
+	153,151,1,0,0,0,153,154,1,0,0,0,154,156,1,0,0,0,155,153,1,0,0,0,156,157,
+	5,14,0,0,157,158,5,40,0,0,158,159,3,6,3,0,159,15,1,0,0,0,160,161,3,6,3,
+	0,161,166,3,18,9,0,162,163,5,19,0,0,163,165,3,18,9,0,164,162,1,0,0,0,165,
+	168,1,0,0,0,166,164,1,0,0,0,166,167,1,0,0,0,167,169,1,0,0,0,168,166,1,0,
+	0,0,169,170,5,20,0,0,170,17,1,0,0,0,171,178,5,43,0,0,172,173,5,15,0,0,173,
+	174,3,68,34,0,174,175,5,16,0,0,175,177,1,0,0,0,176,172,1,0,0,0,177,180,
+	1,0,0,0,178,176,1,0,0,0,178,179,1,0,0,0,179,194,1,0,0,0,180,178,1,0,0,0,
+	181,188,5,43,0,0,182,183,5,15,0,0,183,184,3,68,34,0,184,185,5,16,0,0,185,
+	187,1,0,0,0,186,182,1,0,0,0,187,190,1,0,0,0,188,186,1,0,0,0,188,189,1,0,
+	0,0,189,191,1,0,0,0,190,188,1,0,0,0,191,192,5,25,0,0,192,194,3,20,10,0,
+	193,171,1,0,0,0,193,181,1,0,0,0,194,19,1,0,0,0,195,209,3,36,18,0,196,205,
+	5,17,0,0,197,202,3,20,10,0,198,199,5,19,0,0,199,201,3,20,10,0,200,198,1,
+	0,0,0,201,204,1,0,0,0,202,200,1,0,0,0,202,203,1,0,0,0,203,206,1,0,0,0,204,
+	202,1,0,0,0,205,197,1,0,0,0,205,206,1,0,0,0,206,207,1,0,0,0,207,209,5,18,
+	0,0,208,195,1,0,0,0,208,196,1,0,0,0,209,21,1,0,0,0,210,211,3,24,12,0,211,
+	212,5,43,0,0,212,214,5,13,0,0,213,215,3,26,13,0,214,213,1,0,0,0,214,215,
+	1,0,0,0,215,216,1,0,0,0,216,217,5,14,0,0,217,218,3,30,15,0,218,23,1,0,0,
+	0,219,220,7,0,0,0,220,25,1,0,0,0,221,226,3,28,14,0,222,223,5,19,0,0,223,
+	225,3,28,14,0,224,222,1,0,0,0,225,228,1,0,0,0,226,224,1,0,0,0,226,227,1,
+	0,0,0,227,27,1,0,0,0,228,226,1,0,0,0,229,230,3,6,3,0,230,242,5,43,0,0,231,
+	232,5,15,0,0,232,239,5,16,0,0,233,234,5,15,0,0,234,235,3,68,34,0,235,236,
+	5,16,0,0,236,238,1,0,0,0,237,233,1,0,0,0,238,241,1,0,0,0,239,237,1,0,0,
+	0,239,240,1,0,0,0,240,243,1,0,0,0,241,239,1,0,0,0,242,231,1,0,0,0,242,243,
+	1,0,0,0,243,29,1,0,0,0,244,248,5,17,0,0,245,247,3,32,16,0,246,245,1,0,0,
+	0,247,250,1,0,0,0,248,246,1,0,0,0,248,249,1,0,0,0,249,251,1,0,0,0,250,248,
+	1,0,0,0,251,252,5,18,0,0,252,31,1,0,0,0,253,256,3,2,1,0,254,256,3,34,17,
+	0,255,253,1,0,0,0,255,254,1,0,0,0,256,33,1,0,0,0,257,258,3,40,20,0,258,
+	259,5,25,0,0,259,260,3,36,18,0,260,261,5,20,0,0,261,297,1,0,0,0,262,264,
+	3,36,18,0,263,262,1,0,0,0,263,264,1,0,0,0,264,265,1,0,0,0,265,297,5,20,
+	0,0,266,297,3,30,15,0,267,268,5,6,0,0,268,269,5,13,0,0,269,270,3,38,19,
+	0,270,271,5,14,0,0,271,272,3,34,17,0,272,297,1,0,0,0,273,274,5,6,0,0,274,
+	275,5,13,0,0,275,276,3,38,19,0,276,277,5,14,0,0,277,278,3,34,17,0,278,279,
+	5,7,0,0,279,280,3,34,17,0,280,297,1,0,0,0,281,282,5,8,0,0,282,283,5,13,
+	0,0,283,284,3,38,19,0,284,285,5,14,0,0,285,286,3,34,17,0,286,297,1,0,0,
+	0,287,288,5,9,0,0,288,297,5,20,0,0,289,290,5,10,0,0,290,297,5,20,0,0,291,
+	293,5,5,0,0,292,294,3,36,18,0,293,292,1,0,0,0,293,294,1,0,0,0,294,295,1,
+	0,0,0,295,297,5,20,0,0,296,257,1,0,0,0,296,263,1,0,0,0,296,266,1,0,0,0,
+	296,267,1,0,0,0,296,273,1,0,0,0,296,281,1,0,0,0,296,287,1,0,0,0,296,289,
+	1,0,0,0,296,291,1,0,0,0,297,35,1,0,0,0,298,299,3,58,29,0,299,37,1,0,0,0,
+	300,301,3,66,33,0,301,39,1,0,0,0,302,309,5,43,0,0,303,304,5,15,0,0,304,
+	305,3,36,18,0,305,306,5,16,0,0,306,308,1,0,0,0,307,303,1,0,0,0,308,311,
+	1,0,0,0,309,307,1,0,0,0,309,310,1,0,0,0,310,316,1,0,0,0,311,309,1,0,0,0,
+	312,313,5,43,0,0,313,314,5,39,0,0,314,316,5,43,0,0,315,302,1,0,0,0,315,
+	312,1,0,0,0,316,41,1,0,0,0,317,318,5,13,0,0,318,319,3,36,18,0,319,320,5,
+	14,0,0,320,325,1,0,0,0,321,325,3,40,20,0,322,325,3,46,23,0,323,325,3,44,
+	22,0,324,317,1,0,0,0,324,321,1,0,0,0,324,322,1,0,0,0,324,323,1,0,0,0,325,
+	43,1,0,0,0,326,327,5,38,0,0,327,328,5,13,0,0,328,329,3,6,3,0,329,336,3,
+	18,9,0,330,331,5,19,0,0,331,332,3,6,3,0,332,333,3,18,9,0,333,335,1,0,0,
+	0,334,330,1,0,0,0,335,338,1,0,0,0,336,334,1,0,0,0,336,337,1,0,0,0,337,339,
+	1,0,0,0,338,336,1,0,0,0,339,340,5,14,0,0,340,341,3,30,15,0,341,45,1,0,0,
+	0,342,343,7,1,0,0,343,47,1,0,0,0,344,345,6,24,-1,0,345,356,3,42,21,0,346,
+	347,5,43,0,0,347,349,5,13,0,0,348,350,3,52,26,0,349,348,1,0,0,0,349,350,
+	1,0,0,0,350,351,1,0,0,0,351,356,5,14,0,0,352,353,3,50,25,0,353,354,3,48,
+	24,2,354,356,1,0,0,0,355,344,1,0,0,0,355,346,1,0,0,0,355,352,1,0,0,0,356,
+	362,1,0,0,0,357,358,10,1,0,0,358,359,5,39,0,0,359,361,5,43,0,0,360,357,
+	1,0,0,0,361,364,1,0,0,0,362,360,1,0,0,0,362,363,1,0,0,0,363,49,1,0,0,0,
+	364,362,1,0,0,0,365,366,7,2,0,0,366,51,1,0,0,0,367,372,3,54,27,0,368,369,
+	5,19,0,0,369,371,3,54,27,0,370,368,1,0,0,0,371,374,1,0,0,0,372,370,1,0,
+	0,0,372,373,1,0,0,0,373,53,1,0,0,0,374,372,1,0,0,0,375,378,3,36,18,0,376,
+	378,5,45,0,0,377,375,1,0,0,0,377,376,1,0,0,0,378,55,1,0,0,0,379,380,6,28,
+	-1,0,380,381,3,48,24,0,381,387,1,0,0,0,382,383,10,1,0,0,383,384,7,3,0,0,
+	384,386,3,48,24,0,385,382,1,0,0,0,386,389,1,0,0,0,387,385,1,0,0,0,387,388,
+	1,0,0,0,388,57,1,0,0,0,389,387,1,0,0,0,390,391,6,29,-1,0,391,392,3,56,28,
+	0,392,398,1,0,0,0,393,394,10,1,0,0,394,395,7,4,0,0,395,397,3,56,28,0,396,
+	393,1,0,0,0,397,400,1,0,0,0,398,396,1,0,0,0,398,399,1,0,0,0,399,59,1,0,
+	0,0,400,398,1,0,0,0,401,402,6,30,-1,0,402,403,3,58,29,0,403,409,1,0,0,0,
+	404,405,10,1,0,0,405,406,7,5,0,0,406,408,3,58,29,0,407,404,1,0,0,0,408,
+	411,1,0,0,0,409,407,1,0,0,0,409,410,1,0,0,0,410,61,1,0,0,0,411,409,1,0,
+	0,0,412,413,6,31,-1,0,413,414,3,60,30,0,414,420,1,0,0,0,415,416,10,1,0,
+	0,416,417,7,6,0,0,417,419,3,60,30,0,418,415,1,0,0,0,419,422,1,0,0,0,420,
+	418,1,0,0,0,420,421,1,0,0,0,421,63,1,0,0,0,422,420,1,0,0,0,423,424,6,32,
+	-1,0,424,425,3,62,31,0,425,431,1,0,0,0,426,427,10,1,0,0,427,428,5,30,0,
+	0,428,430,3,62,31,0,429,426,1,0,0,0,430,433,1,0,0,0,431,429,1,0,0,0,431,
+	432,1,0,0,0,432,65,1,0,0,0,433,431,1,0,0,0,434,435,6,33,-1,0,435,436,3,
+	64,32,0,436,442,1,0,0,0,437,438,10,1,0,0,438,439,5,31,0,0,439,441,3,64,
+	32,0,440,437,1,0,0,0,441,444,1,0,0,0,442,440,1,0,0,0,442,443,1,0,0,0,443,
+	67,1,0,0,0,444,442,1,0,0,0,445,446,3,58,29,0,446,69,1,0,0,0,42,72,74,82,
+	91,100,109,122,125,128,141,153,166,178,188,193,202,205,208,214,226,239,
+	242,248,255,263,293,296,309,315,324,336,349,355,362,372,377,387,398,409,
+	420,431,442];
 
 	private static __ATN: ATN;
 	public static get _ATN(): ATN {
@@ -2207,6 +2504,9 @@ export class DeclContext extends ParserRuleContext {
 	}
 	public varDecl(): VarDeclContext {
 		return this.getTypedRuleContext(VarDeclContext, 0) as VarDeclContext;
+	}
+	public structDecl(): StructDeclContext {
+		return this.getTypedRuleContext(StructDeclContext, 0) as StructDeclContext;
 	}
     public get ruleIndex(): number {
     	return SysY2022EParser.RULE_decl;
@@ -2292,6 +2592,12 @@ export class BTypeContext extends ParserRuleContext {
 	}
 	public FLOAT(): TerminalNode {
 		return this.getToken(SysY2022EParser.FLOAT, 0);
+	}
+	public STRUCTNAME(): TerminalNode {
+		return this.getToken(SysY2022EParser.STRUCTNAME, 0);
+	}
+	public lambdaType(): LambdaTypeContext {
+		return this.getTypedRuleContext(LambdaTypeContext, 0) as LambdaTypeContext;
 	}
     public get ruleIndex(): number {
     	return SysY2022EParser.RULE_bType;
@@ -2449,6 +2755,118 @@ export class ScalarConstInitValContext extends ConstInitValContext {
 	public accept<Result>(visitor: SysY2022EVisitor<Result>): Result {
 		if (visitor.visitScalarConstInitVal) {
 			return visitor.visitScalarConstInitVal(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
+}
+
+
+export class StructDeclContext extends ParserRuleContext {
+	constructor(parser?: SysY2022EParser, parent?: ParserRuleContext, invokingState?: number) {
+		super(parent, invokingState);
+    	this.parser = parser;
+	}
+	public STRUCT(): TerminalNode {
+		return this.getToken(SysY2022EParser.STRUCT, 0);
+	}
+	public STRUCTNAME(): TerminalNode {
+		return this.getToken(SysY2022EParser.STRUCTNAME, 0);
+	}
+	public LC(): TerminalNode {
+		return this.getToken(SysY2022EParser.LC, 0);
+	}
+	public bType_list(): BTypeContext[] {
+		return this.getTypedRuleContexts(BTypeContext) as BTypeContext[];
+	}
+	public bType(i: number): BTypeContext {
+		return this.getTypedRuleContext(BTypeContext, i) as BTypeContext;
+	}
+	public varDef_list(): VarDefContext[] {
+		return this.getTypedRuleContexts(VarDefContext) as VarDefContext[];
+	}
+	public varDef(i: number): VarDefContext {
+		return this.getTypedRuleContext(VarDefContext, i) as VarDefContext;
+	}
+	public RC(): TerminalNode {
+		return this.getToken(SysY2022EParser.RC, 0);
+	}
+	public SEMICOLON(): TerminalNode {
+		return this.getToken(SysY2022EParser.SEMICOLON, 0);
+	}
+	public COMMA_list(): TerminalNode[] {
+	    	return this.getTokens(SysY2022EParser.COMMA);
+	}
+	public COMMA(i: number): TerminalNode {
+		return this.getToken(SysY2022EParser.COMMA, i);
+	}
+    public get ruleIndex(): number {
+    	return SysY2022EParser.RULE_structDecl;
+	}
+	public enterRule(listener: SysY2022EListener): void {
+	    if(listener.enterStructDecl) {
+	 		listener.enterStructDecl(this);
+		}
+	}
+	public exitRule(listener: SysY2022EListener): void {
+	    if(listener.exitStructDecl) {
+	 		listener.exitStructDecl(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: SysY2022EVisitor<Result>): Result {
+		if (visitor.visitStructDecl) {
+			return visitor.visitStructDecl(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
+}
+
+
+export class LambdaTypeContext extends ParserRuleContext {
+	constructor(parser?: SysY2022EParser, parent?: ParserRuleContext, invokingState?: number) {
+		super(parent, invokingState);
+    	this.parser = parser;
+	}
+	public LP(): TerminalNode {
+		return this.getToken(SysY2022EParser.LP, 0);
+	}
+	public bType_list(): BTypeContext[] {
+		return this.getTypedRuleContexts(BTypeContext) as BTypeContext[];
+	}
+	public bType(i: number): BTypeContext {
+		return this.getTypedRuleContext(BTypeContext, i) as BTypeContext;
+	}
+	public RP(): TerminalNode {
+		return this.getToken(SysY2022EParser.RP, 0);
+	}
+	public DOT(): TerminalNode {
+		return this.getToken(SysY2022EParser.DOT, 0);
+	}
+	public COMMA_list(): TerminalNode[] {
+	    	return this.getTokens(SysY2022EParser.COMMA);
+	}
+	public COMMA(i: number): TerminalNode {
+		return this.getToken(SysY2022EParser.COMMA, i);
+	}
+    public get ruleIndex(): number {
+    	return SysY2022EParser.RULE_lambdaType;
+	}
+	public enterRule(listener: SysY2022EListener): void {
+	    if(listener.enterLambdaType) {
+	 		listener.enterLambdaType(this);
+		}
+	}
+	public exitRule(listener: SysY2022EListener): void {
+	    if(listener.exitLambdaType) {
+	 		listener.exitLambdaType(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: SysY2022EVisitor<Result>): Result {
+		if (visitor.visitLambdaType) {
+			return visitor.visitLambdaType(this);
 		} else {
 			return visitor.visitChildren(this);
 		}
@@ -3343,6 +3761,18 @@ export class LValContext extends ParserRuleContext {
 		super(parent, invokingState);
     	this.parser = parser;
 	}
+    public get ruleIndex(): number {
+    	return SysY2022EParser.RULE_lVal;
+	}
+	public copyFrom(ctx: LValContext): void {
+		super.copyFrom(ctx);
+	}
+}
+export class LVal1Context extends LValContext {
+	constructor(parser: SysY2022EParser, ctx: LValContext) {
+		super(parser, ctx.parentCtx, ctx.invokingState);
+		super.copyFrom(ctx);
+	}
 	public ID(): TerminalNode {
 		return this.getToken(SysY2022EParser.ID, 0);
 	}
@@ -3364,23 +3794,53 @@ export class LValContext extends ParserRuleContext {
 	public RB(i: number): TerminalNode {
 		return this.getToken(SysY2022EParser.RB, i);
 	}
-    public get ruleIndex(): number {
-    	return SysY2022EParser.RULE_lVal;
-	}
 	public enterRule(listener: SysY2022EListener): void {
-	    if(listener.enterLVal) {
-	 		listener.enterLVal(this);
+	    if(listener.enterLVal1) {
+	 		listener.enterLVal1(this);
 		}
 	}
 	public exitRule(listener: SysY2022EListener): void {
-	    if(listener.exitLVal) {
-	 		listener.exitLVal(this);
+	    if(listener.exitLVal1) {
+	 		listener.exitLVal1(this);
 		}
 	}
 	// @Override
 	public accept<Result>(visitor: SysY2022EVisitor<Result>): Result {
-		if (visitor.visitLVal) {
-			return visitor.visitLVal(this);
+		if (visitor.visitLVal1) {
+			return visitor.visitLVal1(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
+}
+export class LVal2Context extends LValContext {
+	constructor(parser: SysY2022EParser, ctx: LValContext) {
+		super(parser, ctx.parentCtx, ctx.invokingState);
+		super.copyFrom(ctx);
+	}
+	public ID_list(): TerminalNode[] {
+	    	return this.getTokens(SysY2022EParser.ID);
+	}
+	public ID(i: number): TerminalNode {
+		return this.getToken(SysY2022EParser.ID, i);
+	}
+	public POINT(): TerminalNode {
+		return this.getToken(SysY2022EParser.POINT, 0);
+	}
+	public enterRule(listener: SysY2022EListener): void {
+	    if(listener.enterLVal2) {
+	 		listener.enterLVal2(this);
+		}
+	}
+	public exitRule(listener: SysY2022EListener): void {
+	    if(listener.exitLVal2) {
+	 		listener.exitLVal2(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: SysY2022EVisitor<Result>): Result {
+		if (visitor.visitLVal2) {
+			return visitor.visitLVal2(this);
 		} else {
 			return visitor.visitChildren(this);
 		}
@@ -3460,6 +3920,33 @@ export class PrimaryExp1Context extends PrimaryExpContext {
 		}
 	}
 }
+export class PrimaryExp4Context extends PrimaryExpContext {
+	constructor(parser: SysY2022EParser, ctx: PrimaryExpContext) {
+		super(parser, ctx.parentCtx, ctx.invokingState);
+		super.copyFrom(ctx);
+	}
+	public lambdaExp(): LambdaExpContext {
+		return this.getTypedRuleContext(LambdaExpContext, 0) as LambdaExpContext;
+	}
+	public enterRule(listener: SysY2022EListener): void {
+	    if(listener.enterPrimaryExp4) {
+	 		listener.enterPrimaryExp4(this);
+		}
+	}
+	public exitRule(listener: SysY2022EListener): void {
+	    if(listener.exitPrimaryExp4) {
+	 		listener.exitPrimaryExp4(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: SysY2022EVisitor<Result>): Result {
+		if (visitor.visitPrimaryExp4) {
+			return visitor.visitPrimaryExp4(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
+}
 export class PrimaryExp3Context extends PrimaryExpContext {
 	constructor(parser: SysY2022EParser, ctx: PrimaryExpContext) {
 		super(parser, ctx.parentCtx, ctx.invokingState);
@@ -3482,6 +3969,65 @@ export class PrimaryExp3Context extends PrimaryExpContext {
 	public accept<Result>(visitor: SysY2022EVisitor<Result>): Result {
 		if (visitor.visitPrimaryExp3) {
 			return visitor.visitPrimaryExp3(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
+}
+
+
+export class LambdaExpContext extends ParserRuleContext {
+	constructor(parser?: SysY2022EParser, parent?: ParserRuleContext, invokingState?: number) {
+		super(parent, invokingState);
+    	this.parser = parser;
+	}
+	public LAMBDA(): TerminalNode {
+		return this.getToken(SysY2022EParser.LAMBDA, 0);
+	}
+	public LP(): TerminalNode {
+		return this.getToken(SysY2022EParser.LP, 0);
+	}
+	public bType_list(): BTypeContext[] {
+		return this.getTypedRuleContexts(BTypeContext) as BTypeContext[];
+	}
+	public bType(i: number): BTypeContext {
+		return this.getTypedRuleContext(BTypeContext, i) as BTypeContext;
+	}
+	public varDef_list(): VarDefContext[] {
+		return this.getTypedRuleContexts(VarDefContext) as VarDefContext[];
+	}
+	public varDef(i: number): VarDefContext {
+		return this.getTypedRuleContext(VarDefContext, i) as VarDefContext;
+	}
+	public RP(): TerminalNode {
+		return this.getToken(SysY2022EParser.RP, 0);
+	}
+	public block(): BlockContext {
+		return this.getTypedRuleContext(BlockContext, 0) as BlockContext;
+	}
+	public COMMA_list(): TerminalNode[] {
+	    	return this.getTokens(SysY2022EParser.COMMA);
+	}
+	public COMMA(i: number): TerminalNode {
+		return this.getToken(SysY2022EParser.COMMA, i);
+	}
+    public get ruleIndex(): number {
+    	return SysY2022EParser.RULE_lambdaExp;
+	}
+	public enterRule(listener: SysY2022EListener): void {
+	    if(listener.enterLambdaExp) {
+	 		listener.enterLambdaExp(this);
+		}
+	}
+	public exitRule(listener: SysY2022EListener): void {
+	    if(listener.exitLambdaExp) {
+	 		listener.exitLambdaExp(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: SysY2022EVisitor<Result>): Result {
+		if (visitor.visitLambdaExp) {
+			return visitor.visitLambdaExp(this);
 		} else {
 			return visitor.visitChildren(this);
 		}
@@ -3624,6 +4170,39 @@ export class Unary3Context extends UnaryExpContext {
 	public accept<Result>(visitor: SysY2022EVisitor<Result>): Result {
 		if (visitor.visitUnary3) {
 			return visitor.visitUnary3(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
+}
+export class Unary4Context extends UnaryExpContext {
+	constructor(parser: SysY2022EParser, ctx: UnaryExpContext) {
+		super(parser, ctx.parentCtx, ctx.invokingState);
+		super.copyFrom(ctx);
+	}
+	public unaryExp(): UnaryExpContext {
+		return this.getTypedRuleContext(UnaryExpContext, 0) as UnaryExpContext;
+	}
+	public POINT(): TerminalNode {
+		return this.getToken(SysY2022EParser.POINT, 0);
+	}
+	public ID(): TerminalNode {
+		return this.getToken(SysY2022EParser.ID, 0);
+	}
+	public enterRule(listener: SysY2022EListener): void {
+	    if(listener.enterUnary4) {
+	 		listener.enterUnary4(this);
+		}
+	}
+	public exitRule(listener: SysY2022EListener): void {
+	    if(listener.exitUnary4) {
+	 		listener.exitUnary4(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: SysY2022EVisitor<Result>): Result {
+		if (visitor.visitUnary4) {
+			return visitor.visitUnary4(this);
 		} else {
 			return visitor.visitChildren(this);
 		}
